@@ -1,3 +1,8 @@
+require(MVT) || install.packages("MVT")
+require(car) || install.packages("car")
+require(stats) || install.packages("stats")
+require(htmlTable) || install.packages("htmlTable")
+
 server <- function(input, output) {
   
   values <- reactiveValues()
@@ -6,81 +11,21 @@ server <- function(input, output) {
   
   #runs tests and outputs results
   output$results <- reactive ({
+    if (input$test == "variance") {
+      varianceTests <- dget("varianceTests.R")
     
-    #import html to format table
-    formatOut <- dget("tablegen.R")
+      #check for necessary inputs
+      validate(need(input$varButtons, ""))
+      validate(need(input$file, ""))
     
-    #check for necessary inputs
-    validate(need(input$varButtons, ""))
-    validate(need(input$file, ""))
+      varOutput <- varianceTests(values$scores, input$groupingVar, input$groups, input$varButtons)
+      if(varOutput == T) { return() }
     
-    #read file
-    data <- values$scores
-    data[,as.numeric(input$groupingVar)] <- as.factor(data[,as.numeric(input$groupingVar)])
-    data <- as.numeric(data)
-    data <- matrix(data = data, nrow = nrow(values$scores))
-    
-    #extracts variables based on check boxes
-    dataSub <- data[data[, as.numeric(input$groupingVar)] 
-                    %in% as.numeric(input$groups), as.numeric(input$varButtons)]
-    
-    testLabels <- c()
-    finalResults <- c()
-    
-    if (length(input$groups) == 1) {
-      
-      if (length(input$varButtons) == 1) { return() }
-      
-      sf <- studentFit(dataSub)
-      
-      #tests
-      results <- list(homogeneity.test(sf, test = "LRT"), homogeneity.test(sf, test = "Wald"), 
-                      homogeneity.test(sf, test = "score"), homogeneity.test(sf, test = "gradient"))
-      
-      testLabels <- unlist(lapply(results, '[', 6))
-      
-      for(i in 1:length(results)) {
-        finalResults[[i]] <- c(testLabels[i], results[[i]]$statistic, results[[i]]$parameter, 
-                               results[[i]]$p.value)
-      }
+      htmlTable(varOutput, align = "lccc")
     }
     else {
-      groupID <- data[data[, as.numeric(input$groupingVar)] 
-                      %in% as.numeric(input$groups), as.numeric(input$groupingVar)]
-      groupID <- factor(groupID)
-      
-      results <- list(bartlett.test(dataSub, groupID), fligner.test(dataSub, groupID), 
-                      leveneTest(dataSub, groupID), leveneTest(dataSub, groupID, center = mean), 
-                      leveneTest(dataSub, groupID, center = mean, trim = 0.1), 
-                      leveneTest(rank(dataSub), groupID, center = mean), leveneTest(rank(dataSub), groupID))
-      
-      testLabels <- c("Bartlett's K<sup>2</sup>", "Fligner-Killeen &chi;<sup>2</sup>", "Levene's F (median)",
-                      "Levene's F (mean)", "Levene's F (10% trimmed mean)", "Levene's F (nonparametric)", 
-                      "Levene's F (nonparametric - median)")
-      
-      for(i in 1:length(results)) {
-        if (i >= 3) {
-          finalResults[[i]] <- c(testLabels[i], results[[i]]$`F value`[1], paste(results[[i]]$Df, collapse = ", "), 
-                                 results[[i]]$`Pr(>F)`[1])
-        }
-        else {
-          finalResults[[i]] <- c(testLabels[i], results[[i]]$statistic, results[[i]]$parameter, results[[i]]$p.value)
-        }
-      }
+      return()
     }
-    
-    
-    
-    #bind and round
-    finalResults <- do.call(rbind, finalResults)
-    finalResults[,c(2,4)] <- round(as.numeric(finalResults[,c(2,4)]), 5)
-    
-    #label tests and columns (extracts test name from results)
-    colLabels <- c("Test", "Statistic", "df", "p-value")
-    
-    #output
-    finalResults <- as.matrix(rbind(colLabels, finalResults))
-    capture.output(formatOut(finalResults, T))
   })
   
   
@@ -153,6 +98,10 @@ server <- function(input, output) {
 ui <- fluidPage(
   
   tags$head(
+    tags$style(HTML("@import url('//fonts.googleapis.com/css?family=Patua+One');
+                    body { min-width: 450px };
+                    th { color: #808080 }"))),
+  tags$head(
     tags$style(HTML("
                     @import url('//fonts.googleapis.com/css?family=Patua+One');
                     h1 {
@@ -170,12 +119,16 @@ ui <- fluidPage(
                       padding-bottom: 0px;
                       color: #717171;
                     }
+                    body { min-width: 450px };
+                    th { color: #808080 }
                     "))
   ),
   
   headerPanel("", windowTitle = ""),
   
   sidebarPanel(
+    selectInput("test", label = "Choose calculation", 
+                choices = list("Homogeneity of variance" = "variance", "Shape" = "shape")),
     fileInput("file", label = "File input"),
     uiOutput("buttons1"),
     uiOutput("buttons2"),
