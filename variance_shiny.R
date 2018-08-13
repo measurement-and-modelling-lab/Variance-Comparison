@@ -22,6 +22,28 @@ server <- function(input, output) {
       if(varOutput == T) { return() }
     
       htmlTable(varOutput, align = "lccc")
+    } else if (input$test == "shape") {
+      varianceTests <- dget("shapeTests.R")
+      
+      #check for necessary inputs
+      validate(need(input$varButtons, ""))
+      validate(need(input$file, ""))
+      
+      varOutput <- varianceTests(values$scores, input$groupingVar, input$groups, input$varButtons, input$isDependent)
+      if(varOutput == T) { return() }
+      
+      htmlTable(varOutput, align = "lccc")
+    } else if (input$test == "normality") {
+      varianceTests <- dget("normalityTests.R")
+      
+      #check for necessary inputs
+      validate(need(input$varButtons, ""))
+      validate(need(input$file, ""))
+      
+      varOutput <- varianceTests(values$scores, input$groupingVar, input$groups, input$varButtons)
+      if(varOutput == T) { return() }
+      
+      htmlTable(varOutput, align = "lccc")
     }
     else {
       return()
@@ -128,8 +150,10 @@ ui <- fluidPage(
   
   sidebarPanel(
     selectInput("test", label = "Choose calculation", 
-                choices = list("Homogeneity of variance" = "variance", "Shape" = "shape")),
+                choices = list("Homogeneity of variance" = "variance", "Shape" = "shape", 
+                               "Normality" = "normality")),
     fileInput("file", label = "File input"),
+    checkboxInput("isDependent", label = "Dependent samples?", value = TRUE),
     uiOutput("buttons1"),
     uiOutput("buttons2"),
     uiOutput("buttons3")
