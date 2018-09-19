@@ -11,6 +11,9 @@ function(data, groupingVar, groups, varButtons, isDependent) {
                   %in% as.numeric(groups), as.numeric(groupingVar)]
   groupID <- factor(groupID)
   
+  errors <- dget("errors.R")
+  errors(dataSub)
+  
   testLabels <- c()
   finalResults <- c()
   
@@ -22,6 +25,7 @@ function(data, groupingVar, groups, varButtons, isDependent) {
       #tests
       results <- list(wilcox.test(dataSub ~ groupID, paired = TRUE))
     } else {
+      # Friedman's requires blocks, figure out how
       return(invisible(T))
     }
     
@@ -36,12 +40,10 @@ function(data, groupingVar, groups, varButtons, isDependent) {
     
     if (length(groups) == 2) {
       results <- list(wilcox.test(dataSub ~ groupID))
-      print(results)
-      str(results)
-    } else {
+    } else if(length(groups) > 2) {
       results <- list(kruskal.test(dataSub ~ groupID))
-      print(results)
-      str(results)
+    } else {
+      return(invisible(T))
     }
     
     testLabels <- results[[1]]$method
@@ -56,7 +58,6 @@ function(data, groupingVar, groups, varButtons, isDependent) {
   
   #bind and round
   finalResults <- matrix(finalResults[[1]], nrow=1)
-  print(finalResults)
   finalResults[,c(2,4)] <- round(as.numeric(finalResults[,c(2,4)]), 5)
   
   #label tests and columns (extracts test name from results)

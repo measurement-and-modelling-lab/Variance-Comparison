@@ -11,13 +11,17 @@ function(data, groupingVar, groups, varButtons) {
                   %in% as.numeric(groups), as.numeric(groupingVar)]
   groupID <- factor(groupID)
   
+  errors <- dget("errors.R")
+  errors(dataSub)
+  
   testLabels <- c()
   finalResults <- c()
   
   if (length(groups) == 1 & length(varButtons) == 1) {
     
     #tests
-    results <- list(ks.test(dataSub, "pnorm"), shapiro.test(dataSub))
+    # ad.test requires more than 7 values, add error
+    results <- list(ks.test(dataSub, "pnorm"), shapiro.test(dataSub), ad.test(dataSub), ShapiroFranciaTest(dataSub), cvm.test(dataSub))
     
     for(i in 1:length(results)) {
       finalResults[[i]] <- c(results[[i]]$method, results[[i]]$statistic, ifelse(!exists("results[[i]]$parameter"), "N/A", results[[i]]$parameter), 
@@ -33,7 +37,6 @@ function(data, groupingVar, groups, varButtons) {
     results <- MultivariateSK(dataSub)
     
     skew.table <- results[[1]]
-    print(is.numeric(skew.table))
     chisum <- sum(skew.table[,3])
     dfsum <- sum(skew.table[,4])
     psum <- 1 - pchisq(chisum, dfsum)
@@ -57,6 +60,5 @@ function(data, groupingVar, groups, varButtons) {
   finalResults[,1] <- paste0("<b>", finalResults[,1], "</b>")
   
   #output
-  print(finalResults)
   return(finalResults)
 }

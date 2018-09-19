@@ -1,4 +1,4 @@
-function(data, groupingVar, groups, varButtons) {
+function(data, groupingVar, groups, varButtons, isDependent) {
   nrow <- nrow(data)
   data[,as.numeric(groupingVar)] <- as.factor(data[,as.numeric(groupingVar)])
   data <- as.numeric(data)
@@ -8,11 +8,15 @@ function(data, groupingVar, groups, varButtons) {
   dataSub <- data[data[, as.numeric(groupingVar)] 
                   %in% as.numeric(groups), as.numeric(varButtons)]
   
+  errors <- dget("errors.R")
+  errors(list(dataSub))
+  
   testLabels <- c()
   finalResults <- c()
   
-  if (length(groups) == 1) {
+  if (isDependent == T) {
     
+    if (length(groups) > 1) { stop("Select only one group for dependent samples test.") }
     if (length(varButtons) == 1) { return(invisible(T)) }
     
     sf <- studentFit(dataSub)
