@@ -1,22 +1,8 @@
-function(data, groupingVar, groups, varButtons, isDependent) {
-  nrow <- nrow(data)
-  data[,as.numeric(groupingVar)] <- as.factor(data[,as.numeric(groupingVar)])
-  data <- as.numeric(data)
-  data <- matrix(data = data, nrow = nrow)
-  
-  #extracts variables based on check boxes
-  dataSub <- data[data[, as.numeric(groupingVar)] 
-                  %in% as.numeric(groups), as.numeric(varButtons)]
-  
-  errors <- dget("errors.R")
-  errors(list(dataSub))
-  
+function(dataSub, groupID, groups, varButtons, isDependent) {
   testLabels <- c()
   finalResults <- c()
   
   if (isDependent == T) {
-    
-    if (length(groups) > 1) { stop("Select only one group for dependent samples test.") }
     if (length(varButtons) == 1) { return(invisible(T)) }
     
     sf <- studentFit(dataSub)
@@ -33,10 +19,6 @@ function(data, groupingVar, groups, varButtons, isDependent) {
     }
   }
   else {
-    groupID <- data[data[, as.numeric(groupingVar)] 
-                    %in% as.numeric(groups), as.numeric(groupingVar)]
-    groupID <- factor(groupID)
-    
     results <- list(bartlett.test(dataSub, groupID), fligner.test(dataSub, groupID), 
                     leveneTest(dataSub, groupID), leveneTest(dataSub, groupID, center = mean), 
                     leveneTest(dataSub, groupID, center = mean, trim = 0.1), 

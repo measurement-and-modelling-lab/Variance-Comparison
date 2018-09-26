@@ -20,40 +20,65 @@ server <- function(input, output) {
     validate(need(input$varButtons, ""))
     validate(need(input$file, ""))
     
+    data <- values$scores
+    nrow <- nrow(data)
+    data[,as.numeric(input$groupingVar)] <- as.factor(data[,as.numeric(input$groupingVar)])
+    data <- as.numeric(data)
+    data <- matrix(data = data, nrow = nrow)
+    
+    #extracts variables based on check boxes
+    dataSub <- data[data[, as.numeric(input$groupingVar)] 
+                    %in% as.numeric(input$groups), as.numeric(input$varButtons)]
+    groupID <- data[data[, as.numeric(input$groupingVar)] 
+                    %in% as.numeric(input$groups), as.numeric(input$groupingVar)]
+    groupID <- factor(groupID)
+    
+    errors <- dget("errors.R")
+    errors(dataSub)
+    
     # tests for variance
     if (input$test == "variance") {
       # loads variance function
       tests <- dget("varianceTests.R")
+      
+      # stops if too many groups for dependent samples test
+      if (input$isDependent & (length(input$groups) > 1)) { stop("Select only one group for dependent samples test.") }
     
-      # function call for variance tests
-      varOutput <- tests(values$scores, input$groupingVar, input$groups, input$varButtons, input$isDependent)
+      # function call for variance tests with error catching
+      tryCatch(
+        output <- tests(dataSub, groupID, input$groups, input$varButtons, input$isDependent),
+        error = function(e) stop("An error occurred."))
       # exits if correct inputs not selected
-      if(varOutput == T) { return() }
+      if(output[1] == T) { return() }
       
       # output format
-      htmlTable(varOutput, align = "lccc")
+      htmlTable(output, align = "lccc")
     } else if (input$test == "shape") {
       # loads tests for shape
       tests <- dget("shapeTests.R")
       
-      # function call for shape tests
-      varOutput <- tests(values$scores, input$groupingVar, input$groups, input$varButtons, input$isDependent)
+      # function call for shape tests with error catching
+      tryCatch(
+        output <- tests(dataSub, groupID, input$groups, input$isDependent),
+        error = function(e) stop("An error occurred."))
       # exits if correct inputs not selected
-      if(varOutput == T) { return() }
+      if(output[1] == T) { return() }
       
       # format output
-      htmlTable(varOutput, align = "lccc")
+      htmlTable(output, align = "lccc")
     } else if (input$test == "normality") {
       # loads tests for normality
       tests <- dget("normalityTests.R")
       
-      # funtion call for normality tests
-      varOutput <- tests(values$scores, input$groupingVar, input$groups, input$varButtons)
+      # funtion call for normality tests with error catching
+      tryCatch(
+        output <- tests(dataSub, groupID, input$groups, input$varButtons),
+        error = function(e) stop("An error occurred."))
       # exits if correct inputs not selected
-      if(varOutput == T) { return() }
+      if(output[1] == T) { return() }
       
       # format output
-      htmlTable(varOutput, align = "lccc")
+      htmlTable(output, align = "lccc")
     } else {
       # exit if nothing selected
       return()

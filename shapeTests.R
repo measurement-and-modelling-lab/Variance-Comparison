@@ -1,26 +1,8 @@
-function(data, groupingVar, groups, varButtons, isDependent) {
-  nrow <- nrow(data)
-  data[,as.numeric(groupingVar)] <- as.factor(data[,as.numeric(groupingVar)])
-  data <- as.numeric(data)
-  data <- matrix(data = data, nrow = nrow)
-  
-  #extracts variables based on check boxes
-  dataSub <- data[data[, as.numeric(groupingVar)] 
-                  %in% as.numeric(groups), as.numeric(varButtons)]
-  groupID <- data[data[, as.numeric(groupingVar)] 
-                  %in% as.numeric(groups), as.numeric(groupingVar)]
-  groupID <- factor(groupID)
-  
-  errors <- dget("errors.R")
-  errors(dataSub)
-  
+function(dataSub, groupID, groups, isDependent) {
   testLabels <- c()
   finalResults <- c()
   
   if (isDependent == T) {
-    
-    #if (length(varButtons) == 1) { return(invisible(T)) }
-    
     if (length(groups) == 2) {
       #tests
       results <- list(wilcox.test(dataSub ~ groupID, paired = TRUE))
