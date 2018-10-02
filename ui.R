@@ -1,3 +1,14 @@
+# load required packages
+require(MVT) || install.packages("MVT")
+require(car) || install.packages("car")
+require(stats) || install.packages("stats")
+require(htmlTable) || install.packages("htmlTable")
+require(nortest) || install.packages("nortest")
+require(DescTools) || install.packages("DescTools")
+require(TeachingDemos) || install.packages("TeachingDemos")
+require(PoweR) || install.packages("PoweR")
+
+
 # creates UI
 shinyUI(fluidPage(
   
