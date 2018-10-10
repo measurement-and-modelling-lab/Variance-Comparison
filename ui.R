@@ -1,4 +1,3 @@
-# load required packages
 require(MVT) || install.packages("MVT")
 require(car) || install.packages("car")
 require(stats) || install.packages("stats")
@@ -8,8 +7,6 @@ require(DescTools) || install.packages("DescTools")
 require(TeachingDemos) || install.packages("TeachingDemos")
 require(PoweR) || install.packages("PoweR")
 
-
-# creates UI
 shinyUI(fluidPage(
   
   tags$head(
@@ -26,18 +23,18 @@ shinyUI(fluidPage(
                     color: #333;
                     }
                     td {
-                      white-space: nowrap;
-                      width: 1px;
-                      padding-left: 8px;
-                      padding-right: 8px;
-                      padding-top: 0px;
-                      padding-bottom: 0px;
-                      color: #717171;
+                    white-space: nowrap;
+                    width: 1px;
+                    padding-left: 8px;
+                    padding-right: 8px;
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                    color: #717171;
                     }
                     body { min-width: 450px };
                     th { color: #808080 }
                     "))
-  ),
+    ),
   
   headerPanel("", windowTitle = ""),
   
@@ -56,8 +53,11 @@ shinyUI(fluidPage(
     # selection of groups
     uiOutput("buttons2"),
     # dependent variables
-    uiOutput("buttons3")
-    ),
+    uiOutput("buttons3"),
+    uiOutput("buttons4")
+  ),
+  
+  
   
   # assigns output to main panel
   mainPanel(

@@ -23,6 +23,12 @@ shinyServer(function(input, output, session) {
                     %in% as.numeric(input$groups), as.numeric(input$groupingVar)]
     groupID <- factor(groupID)
     
+    if (input$isDependent & (input$test == "shape") & (length(input$groups) > 2)) {
+      blockVector <- data[data[, as.numeric(input$groupingVar)] 
+                          %in% as.numeric(input$groups), as.numeric(input$block)]
+    }
+    else { blockVector <- NA }
+    
     errors <- dget("errors.R")
     errors(dataSub)
     
@@ -33,7 +39,7 @@ shinyServer(function(input, output, session) {
       
       # stops if too many groups for dependent samples test
       if (input$isDependent & (length(input$groups) > 1)) { stop("Select only one group for dependent samples test.") }
-    
+      
       # function call for variance tests with error catching
       tryCatch(
         output <- tests(dataSub, groupID, input$groups, input$varButtons, input$isDependent),
@@ -49,7 +55,7 @@ shinyServer(function(input, output, session) {
       
       # function call for shape tests with error catching
       tryCatch(
-        output <- tests(dataSub, groupID, input$groups, input$isDependent),
+        output <- tests(dataSub, groupID, input$groups, input$isDependent, blockVector),
         error = function(e) stop("An error occurred."))
       # exits if correct inputs not selected
       if(output[1] == T) { return() }
@@ -105,7 +111,7 @@ shinyServer(function(input, output, session) {
     names(choices) <- values$header
     # sends to UI
     HTML(paste0(radioButtons("groupingVar", label = "Grouping Variable",
-                       choices = choices)))
+                             choices = choices)))
   })
   
   # select which groups to use
@@ -119,17 +125,17 @@ shinyServer(function(input, output, session) {
     groups <- unique(groups)
     groupFactor <- as.numeric(as.factor(groups))
     
-    if(groups > 16) { stop("Too many groups") }
-
+    if(groups[1] > 16) { stop("Too many groups") }
+    
     # to check if variable continuous
     # figure out a better way to do this
     if (length(groups) == nrow(values$scores)) { 
       stop("There is only one participant per group!")
-      }
-   
+    }
+    
     names(groupFactor) <- groups
     HTML(paste0(checkboxGroupInput("groups", label = "Groups",
-                                                          choices = groupFactor)))
+                                   choices = groupFactor)))
   })
   
   # select dependent variables
@@ -145,10 +151,23 @@ shinyServer(function(input, output, session) {
     # allows for selection of multiple variables if only one group is selected
     if (length(input$groups) == 1) {
       HTML(paste0(checkboxGroupInput("varButtons", label = "Variables",
-                                                            choices = choices)))
+                                     choices = choices)))
     } else {
       HTML(paste0(radioButtons("varButtons", label = "Variables",
-                                                      choices = choices)))
+                               choices = choices)))
+    }
+  })
+  
+  # choose blocks
+  output$buttons4 <- reactive ({
+    validate(need(input$varButtons, ""))
+    
+    if (input$isDependent & (input$test == "shape") & (length(input$groups) > 2)){
+      choices <- (1:ncol(values$scores))[-c(as.numeric(input$groupingVar), as.numeric(input$varButtons))]
+      names(choices) <- values$header[-c(as.numeric(input$groupingVar), as.numeric(input$varButtons))]
+      
+      HTML(paste0(radioButtons("block", label = "Block",
+                               choices = choices)))
     }
   })
 })
