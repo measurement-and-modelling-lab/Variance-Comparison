@@ -1,0 +1,19 @@
+|---------------+-----------+-------------------------------+-------|
+| Package       | Test of   | Function                      | Local |
+|---------------+-----------+-------------------------------+-------|
+| DescTools     | Normality | ShapiroFranciaTest            | *     |
+| MVT           | Variance  | homogeneity.test              | *     |
+| PoweR         |           |                               | *     |
+| TeachingDemos | Normality | SnowsPenultimateNormalityTest |       |
+| car           | Variance  | leveneTest                    | *     |
+| nortest       | Normality | ad.test                       | *     |
+| nortest       | Normality | cvm.test                      | *     |
+| nortest       | Normality | lillie.test                   | *     |
+| nortest       | Normality | pearson.test                  | *     |
+| nortest       | Normality | sf.test                       | *     |
+| stats         | Normality | ks.test                       | *     |
+| stats         | Normality | shapiro.test                  | *     |
+| stats         | Shape     | wilcox.test                   | *     |
+| stats         | Shape     | friedman.test                 | *     |
+| stats         | Variance  | bartlett.test                 | *     |
+|---------------+-----------+-------------------------------+-------|
