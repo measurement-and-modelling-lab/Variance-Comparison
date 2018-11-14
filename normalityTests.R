@@ -4,9 +4,16 @@ function(dataSub, groupID, groups, varButtons) {
   
   if (length(groups) == 1 & length(varButtons) == 1) {
     
+    ShapiroFranciaTest <- dget("ShapiroFranciaTest.R")
+    ad.test <- dget("ad.test.R")
+    cvm.test <- dget("cvm.test.R")
+    lillie.test <- dget("lillie.test.R")
+    pearson.test <- dget("pearson.test.R")
+    sf.test <- dget("sf.test.R")
     #tests
     # ad.test requires more than 7 values, add error
-    results <- list(ks.test(dataSub, "pnorm"), shapiro.test(dataSub), ad.test(dataSub), ShapiroFranciaTest(dataSub), cvm.test(dataSub))
+    results <- list(ks.test(dataSub, "pnorm"), shapiro.test(dataSub), ad.test(dataSub), ShapiroFranciaTest(dataSub), 
+                    cvm.test(dataSub), lillie.test(dataSub), pearson.test(dataSub), sf.test(dataSub))
     
     for(i in 1:length(results)) {
       finalResults[[i]] <- c(results[[i]]$method, results[[i]]$statistic, ifelse(!exists("results[[i]]$parameter"), "N/A", results[[i]]$parameter), 

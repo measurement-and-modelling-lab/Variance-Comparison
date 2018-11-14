@@ -5,6 +5,8 @@ function(dataSub, groupID, groups, varButtons, isDependent) {
   if (isDependent == T) {
     if (length(varButtons) == 1) { return(invisible(T)) }
     
+    homogeneity.test <- dget("homogeneity.test.R")
+    
     sf <- studentFit(dataSub)
     
     #tests
@@ -19,6 +21,7 @@ function(dataSub, groupID, groups, varButtons, isDependent) {
     }
   }
   else {
+    source("leveneTest.R")
     results <- list(bartlett.test(dataSub, groupID), fligner.test(dataSub, groupID), 
                     leveneTest(dataSub, groupID), leveneTest(dataSub, groupID, center = mean), 
                     leveneTest(dataSub, groupID, center = mean, trim = 0.1), 
