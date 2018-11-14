@@ -3,7 +3,18 @@
 |---------------+-----------+-------------------------------+-------|
 | DescTools     | Normality | ShapiroFranciaTest            | *     |
 | MVT           | Variance  | homogeneity.test              | *     |
-| PoweR         |           |                               | *     |
+| PoweR         | Normality | stat2                         |       |
+| PoweR         | Normality | stat3                         |       |
+| PoweR         | Normality | stat4                         |       |
+| PoweR         | Normality | stat6                         |       |
+| PoweR         | Normality | stat7                         |       |
+| PoweR         | Normality | stat8                         |       |
+| PoweR         | Normality | stat17                        |       |
+| PoweR         | Normality | stat26                        |       |
+| PoweR         | Normality | stat29                        |       |
+| PoweR         | Normality | stat30                        |       |
+| PoweR         | Normality | stat36                        |       |
+| PoweR         | Normality | stat37                        |       |
 | TeachingDemos | Normality | SnowsPenultimateNormalityTest |       |
 | car           | Variance  | leveneTest                    | *     |
 | nortest       | Normality | ad.test                       | *     |
@@ -16,4 +27,5 @@
 | stats         | Shape     | wilcox.test                   | *     |
 | stats         | Shape     | friedman.test                 | *     |
 | stats         | Variance  | bartlett.test                 | *     |
+| stats         | Variance  | kruskal.test                  | *     |
 |---------------+-----------+-------------------------------+-------|
