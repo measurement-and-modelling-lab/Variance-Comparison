@@ -10,6 +10,14 @@ shinyServer(function(input, output, session) {
     validate(need(input$varButtons, ""))
     validate(need(input$file, ""))
     
+    # error checking and output functions
+    errors <- dget("errors.R")
+    source("htmlTable.R")
+    # test functions
+    varTests <- dget("varianceTests.R")
+    shapeTests <- dget("shapeTests.R")
+    normalityTests <- dget("normalityTests.R")
+    
     data <- values$scores
     nrow <- nrow(data)
     data[,as.numeric(input$groupingVar)] <- as.factor(data[,as.numeric(input$groupingVar)])
@@ -29,20 +37,17 @@ shinyServer(function(input, output, session) {
     }
     else { blockVector <- NA }
     
-    errors <- dget("errors.R")
     errors(dataSub)
     
     # tests for variance
     if (input$test == "variance") {
-      # loads variance function
-      tests <- dget("varianceTests.R")
       
       # stops if too many groups for dependent samples test
       if (input$isDependent & (length(input$groups) > 1)) { stop("Select only one group for dependent samples test.") }
       
       # function call for variance tests with error catching
       tryCatch(
-        output <- tests(dataSub, groupID, input$groups, input$varButtons, input$isDependent),
+        output <- varTests(dataSub, groupID, input$groups, input$varButtons, input$isDependent),
         error = function(e) stop("An error occurred."))
       # exits if correct inputs not selected
       if(output[1] == T) { return() }
@@ -50,12 +55,10 @@ shinyServer(function(input, output, session) {
       # output format
       htmlTable(output, align = "lccc")
     } else if (input$test == "shape") {
-      # loads tests for shape
-      tests <- dget("shapeTests.R")
       
       # function call for shape tests with error catching
       tryCatch(
-        output <- tests(dataSub, groupID, input$groups, input$isDependent, blockVector),
+        output <- shapeTests(dataSub, groupID, input$groups, input$isDependent, blockVector),
         error = function(e) stop("An error occurred."))
       # exits if correct inputs not selected
       if(output[1] == T) { return() }
@@ -63,12 +66,10 @@ shinyServer(function(input, output, session) {
       # format output
       htmlTable(output, align = "lccc")
     } else if (input$test == "normality") {
-      # loads tests for normality
-      tests <- dget("normalityTests.R")
       
       # funtion call for normality tests with error catching
       tryCatch(
-        output <- tests(dataSub, groupID, input$groups, input$varButtons),
+        output <- normalityTests(dataSub, groupID, input$groups, input$varButtons),
         error = function(e) stop("An error occurred."))
       # exits if correct inputs not selected
       if(output[1] == T) { return() }
