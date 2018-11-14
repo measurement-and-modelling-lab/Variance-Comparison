@@ -12,7 +12,6 @@ shinyServer(function(input, output, session) {
     
     # error checking and output functions
     errors <- dget("errors.R")
-    source("htmlTable.R")
     # test functions
     varTests <- dget("varianceTests.R")
     shapeTests <- dget("shapeTests.R")
