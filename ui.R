@@ -4,8 +4,10 @@ require(htmlTable) || install.packages("htmlTable")
 require(nortest) || install.packages("nortest")
 #require(DescTools) || install.packages("DescTools")
 require(TeachingDemos) || install.packages("TeachingDemos")
-#require(MVT) || install.packages("MVT")
+#require(MVT) || install.packages("MVT", dependencies = TRUE)
 #require(PoweR) || install.packages("PoweR")
+
+
 
 shinyUI(fluidPage(
   
