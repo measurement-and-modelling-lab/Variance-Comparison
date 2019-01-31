@@ -1,186 +1,117 @@
 shinyServer(function(input, output, session) {
 
-    
-    homogeneity.test <- dget("homogeneity.test.R")
-    source("leveneTest.R")
-    source("studentFit.R")
-
+    ## Global variables
     values <- reactiveValues()
     values$scores <- ""
-    values$header <- ""
+    values$colnames <- ""
 
-    output$buttons1 <- reactive ({
-        ## Create a checkbox ui element for choosing a grouping variable
+    ## Create a checkbox ui element for choosing a grouping variable
+    output$chooseGroupingVar <- reactive ({
 
-        ## checks for uploaded file and reads as matrix
+        ## Ensure that a file has been uploaded
         validate(need(input$file, ""))
+
+        ## Read data as a matrix
         file <- input$file[[4]]
-        data <- as.matrix(read.csv(file, header = F))
+        values$scores <- read.csv(file, header=TRUE)
 
-        ## creates variable with number of columns
-        cols <- ncol(data)
+        ## Create a variable list
+        choices <- 1:ncol(values$scores)
 
-        if ((cols - 1) > 16) {
-            stop("Too many variables")
-        }
-
-        ## checks for row and column names
-        ## assigns data and names to scores and header (numbers cols if no names)
-        if (is.character(data)) {
-            values$header <- data[1,]
-            values$scores <- data[-1,]
-            data <- data[-1,]
-        } else {
-            values$scores <- data
-            values$header <- 1:cols
-        }
-
-        ## creates a named list of numbers for check boxes
-        choices <- 1:cols
-        names(choices) <- values$header
-
-        ## sends to UI
-        HTML(paste0(radioButtons("groupingVar", label = "Grouping Variable",
+        ## Output ui element
+        HTML(paste0(radioButtons("groupingVar",
+                                 label = "Grouping Variable",
                                  choices = choices)))
     })
 
-    output$buttons2 <- reactive ({
-        ## select which groups to use
 
-        ## checks for uploaded file and reads as matrix
+    ## Select which groups to use
+    output$chooseGroups <- reactive ({
+
+        ## Ensure that a grouping variable has been selected
         validate(need(input$groupingVar, ""))
 
-        ## extracts and factors grouping variable
-        groups <- values$scores[,as.numeric(input$groupingVar)]
+        ## Extract and grouping variable
+        groupingVar <- as.numeric(input$groupingVar)
+        groups <- values$scores[,groupingVar]
         groups <- unique(groups)
-        groupFactor <- as.numeric(as.factor(groups))
 
-        if(groups[1] > 16) {
-            stop("Too many groups")
-        }
-
-        ## to check if variable continuous
-        ## figure out a better way to do this
-        if (length(groups) == nrow(values$scores)) {
-            stop("There is only one participant per group!")
-        }
-
-        names(groupFactor) <- groups
-        HTML(paste0(checkboxGroupInput("groups", label = "Groups",
-                                       choices = groupFactor)))
+        ## Output ui element
+        HTML(paste0(checkboxGroupInput("groups",
+                                       label = "Groups",
+                                       choices = groups)))
     })
 
-    output$buttons3 <- reactive ({
-        ## select dependent variables
+    ## Choose the dependent variables
+    output$chooseDV <- reactive ({
 
-        ## checks for uploaded file and reads as matrix
+        ## Ensure that groups have been selected
         validate(need(input$groups, ""))
 
-        ## removes grouping variable from choices
-        choices <- (1:ncol(values$scores))[-as.numeric(input$groupingVar)]
-        names(choices) <- values$header[-as.numeric(input$groupingVar)]
+        ## Construct a list of variables, excluding the grouping variable
+        groupingVar <- as.numeric(input$groupingVar)
+        p <- ncol(values$scores)
+        choices <- (1:p)[-groupingVar]
 
-        ## allows for selection of multiple variables if only one group is selected
-        HTML(paste0(checkboxGroupInput("varButtons", label = "Variables",
+        ## Output ui element
+        HTML(paste0(checkboxGroupInput("outcomeVar",
+                                       label = "Variables",
                                        choices = choices)))
     })
 
-    ## choose blocks
-    output$buttons4 <- reactive ({
-        validate(need(input$varButtons, ""))
-
-        if (input$isDependent & (input$test == "shape") & (length(input$groups) > 2)){
-            choices <- (1:ncol(values$scores))[-c(as.numeric(input$groupingVar), as.numeric(input$varButtons))]
-            names(choices) <- values$header[-c(as.numeric(input$groupingVar), as.numeric(input$varButtons))]
-
-            HTML(paste0(radioButtons("block", label = "Block",
-                                     choices = choices)))
-        }
-    })
-
-
-    ## runs tests and outputs results
+    ## Run tests and output results
     output$results <- reactive ({
-        ## check for necessary inputs
-        validate(need(input$varButtons, ""))
+
+        ## Check for necessary inputs
+        validate(need(input$outcomeVar, ""))
         validate(need(input$file, ""))
 
-        ## error checking and output functions
-        errors <- dget("errors.R")
-        ## test functions
-        varTests <- dget("varianceTests.R")
-        shapeTests <- dget("shapeTests.R")
-        normalityTests <- dget("normalityTests.R")
-
+        ## Fetch necessary values
+        groupingVar <- as.numeric(input$groupingVar)
+        variables <- as.numeric(input$outcomeVar)
+        groups <- as.numeric(input$groups)
         data <- values$scores
-        nrow <- nrow(data)
-        data[,as.numeric(input$groupingVar)] <- as.factor(data[,as.numeric(input$groupingVar)])
-        data <- as.numeric(data)
-        data <- matrix(data = data, nrow = nrow)
 
-        ##extracts variables based on check boxes
-        dataSub <- data[data[, as.numeric(input$groupingVar)]
-                        %in% as.numeric(input$groups), as.numeric(input$varButtons)]
-        groupID <- data[data[, as.numeric(input$groupingVar)]
-                        %in% as.numeric(input$groups), as.numeric(input$groupingVar)]
-        groupID <- factor(groupID)
+        ## Subset the data
+        data <- data[data[,groupingVar] == groups, ]
+        values <- data[, variables]
+        groups <- data[,groupingVar]
 
-        if (input$isDependent & (input$test == "shape") & (length(input$groups) > 2)) {
-            blockVector <- data[data[, as.numeric(input$groupingVar)]
-                                %in% as.numeric(input$groups), as.numeric(input$block)]
-        }
-        else { blockVector <- NA }
-
-        errors(dataSub)
-
-        ## tests for variance
-        if (input$test == "variance") {
-
-            ## stops if too many groups for dependent samples test
-            if (input$isDependent & (length(input$groups) > 1)) { stop("Select only one group for dependent samples test.") }
-
-            ## function call for variance tests with error catching
-            ##tryCatch(
-                output <- varTests(dataSub, groupID, input$groups, input$varButtons, input$isDependent)#,
-            ##    error = function(e) stop("An error occurred."))
-
-            ## exits if correct inputs not selected
-            if(output[1] == T) {
+        if (input$test == "hov") {
+            dependent <- length(variables) > 1
+            if (dependent) {
+                source("./dependentHOV/dependentHOV.R")
+                table <- dependentHOV(values)
+            } else if (length(input$groups) > 1) {
+                source("./independentHOV/independentHOV.R")
+                table <- independentHOV(values, groups)
+            } else {
                 return()
             }
-
-            ## output format
-            htmlTable(output, align = "lccc")
-
-        } else if (input$test == "shape") {
-
-            ## function call for shape tests with error catching
-            tryCatch(
-                output <- shapeTests(dataSub, groupID, input$groups, input$isDependent, blockVector),
-                error = function(e) stop("An error occurred."))
-            ## exits if correct inputs not selected
-            if(output[1] == T) { return() }
-
-            ## format output
-            htmlTable(output, align = "lccc")
         } else if (input$test == "normality") {
-
-            ## funtion call for normality tests with error catching
-            tryCatch(
-                output <- normalityTests(dataSub, groupID, input$groups, input$varButtons),
-                error = function(e) stop("An error occurred."))
-            ## exits if correct inputs not selected
-            if(output[1] == T) { return() }
-
-            ## format output
-            htmlTable(output, align = "lccc")
+            univariate <- length(variables) == 1
+            if (univariate) {
+                source("./univariateNormality/univariateNormality.R")
+                table <- univariateNormality(values)
+            } else {
+                source("./multivariateNormality/multivariateNormality.R")
+                table <- multivariateNormality(values)
+            }
+        } else if (input$test == "shape") {
+            compatible <- length(input$groups) > 1 & length(variables) == 1
+            if (compatible) {
+                source("./shapeComparison/shapeComparison.R")
+                table <- shapeComparison(values, groups)
+            } else {
+                return()
+            }
         } else {
-            ## exit if nothing selected
             return()
         }
+
+        source("tablegen.R")
+        output <- tableGen(table)
+        HTML(output)
+        
     })
-
-
-
-
 })

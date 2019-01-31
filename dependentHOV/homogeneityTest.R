@@ -1,4 +1,4 @@
-homogeneity.test <-
+homogeneityTest <-
 function(object, test = "LRT", type = "scale")
 {
   ## local functions
@@ -143,47 +143,12 @@ function(object, test = "LRT", type = "scale")
     df <- df - 1
   pval <- 1 - pchisq(stat, df = df)
 
-  ## output object
-  dimnames(f0$Scatter) <- dimnames(fit$Scatter)
-  z <- list(statistic = stat, parameter = df, p.value = pval, estimate = fit$Scatter,
-            null.value = f0$Scatter, method = method, null.fit = null.fit)
-  if (is.null(fit$call$data))
-    z$data <- fit$call$x
-  else
-    z$data <- fit$call$data
-  z$family <- fit$family
-  class(z) <- "homogeneity.test"
-  z
-}
+  result <- list(method = method,
+                 statistic = stat,
+                 df = df,
+                 p.value = pval)
 
-print.homogeneity.test <- function(x, digits = 4, ...)
-{
-  ## local functions
-  print.symmetric <-
-  function(z, digits = digits, ...)
-  {
-    ll <- lower.tri(z, diag = TRUE)
-    z[ll] <- format(z[ll], ...)
-    z[!ll] <- ""
-    print(z, ..., quote = F)
-  }
-
-  cat("\n")
-  cat(paste(x$method, "for equality of variances", sep = " "), "\n")
-  cat("\n")
-  cat("data:", x$data, "\n")
-  out <- character()
-  out <- c(out, paste(names(x$statistic), "statistic =",
-                      format(round(x$statistic, digits = digits))))
-  out <- c(out, paste("df =", x$parameter))
-  out <- c(out, paste("p-value =", format(round(x$p.value, digits = digits))))
-  cat(strwrap(paste(out, collapse = ", ")), sep = "\n")
-  cat("alternative hypothesis: true variances are not equal.\n")
-  #print(x$null.value, ...)
-  cat("\n")
-  cat("sample estimate:\n")
-  print.symmetric(x$estimate, digits = digits)
-  invisible(x)
+  return(result)
 }
 
 studentFit <-
@@ -287,46 +252,9 @@ function(x, data, family = Student(eta = .25), subset, na.action, control = mvt.
   out
 }
 
-print.studentFit <-
-function(x, digits = 4, ...)
-{
-  ## local functions
-  print.symmetric <-
-  function(z, digits = digits, ...)
-  {
-    ll <- lower.tri(z, diag = TRUE)
-    z[ll] <- format(z[ll], ...)
-    z[!ll] <- ""
-    print(z, ..., quote = F)
-  }
-  cat("Call:\n")
-  x$call$family <- x$family$call
-  dput(x$call, control = NULL)
-  if (x$converged)
-    cat("Converged in", x$numIter, "iterations\n")
-  else
-    cat("Maximum number of iterations exceeded")
-  cat("\nCenter:\n ")
-  print(format(round(x$center, digits = digits)), quote = F, ...)
-  cat("\nScatter matrix estimate:\n")
-  if (x$dims[2] <= 5)
-    print.symmetric(x$Scatter, digits = digits)
-  else {
-    print.symmetric(x$Scatter[1:5,1:5], digits = digits)
-    cat("...")
-  }
-  nobs <- x$dims[1]
-  cat("\nNumber of Observations:", nobs, "\n")
-  invisible(x)
-}
-
 Student.family <-
 function(object, ...)
 UseMethod("family")
-
-print.Student.family <-
-function (x, ...) 
-cat(" Family:", deparse(x$call), "\n")
 
 Student <-
 function(eta = 0.25)
@@ -350,35 +278,6 @@ mvt.control <-
 function(maxIter = 2000, tolerance = 1e-6, fix.shape = FALSE)
 {
   list(maxIter = maxIter, tolerance = tolerance, fix.shape = fix.shape)
-}
-
-
-
-fit.st <- function(data, ...){
-  #if(is.timeSeries(data)) data <- series(data)
-  mu <- mean(data)
-  m2 <- mean((data - mu)^2)
-  m4 <- mean((data - mu)^4)
-  nu <- 4 + (6 * m2^2) / (m4 - 3 * m2^2)
-  sigma <- sqrt((nu - 2) * m2 / nu)
-  theta <- c(nu, mu, sigma)
-  negloglik <- function(theta, y){
-    - sum(log(dt((y - theta[2]) / abs(theta[3]), df = abs(theta[1]))) - log(abs(theta[3])))
-  }
-  optimfit <- optim(theta, fn = negloglik, y = data, ...)
-  par.ests <- optimfit$par
-  ifelse(optimfit$convergence == 0, converged <- TRUE, converged <- FALSE)
-  par.ests[1] <- abs(par.ests[1])
-  par.ests[2] <- abs(par.ests[2])
-  nItheta <- hessian(negloglik, par.ests, y = data)
-  asymp.cov <- solve(nItheta)
-  loglh.max <- -negloglik(par.ests, y = data)
-  par.ses <- sqrt(diag(asymp.cov))
-  names(par.ests) <- c("nu", "mu", "sigma")
-  names(par.ses) <- names(par.ests)
-  dimnames(asymp.cov) <- list(names(par.ests), names(par.ests))
-  list(converged = converged, par.ests = par.ests, par.ses = par.ses,
-       asymp.cov = asymp.cov, ll.max = loglh.max)
 }
 
 hessian <- function(f, x0, h = .Machine$double.eps^(1/4), ...) {
@@ -412,12 +311,114 @@ hessian <- function(f, x0, h = .Machine$double.eps^(1/4), ...) {
     return(H)
 }
 
+fisher.info <-
+function(object)
+{
+    ## local functions
+    c.eta <- function(eta) {
+        eta / (1 - 2 * eta)
+    }
+    c.phi <- function(eta, p) {
+        (1 + p * eta) / (1 + (p + 2) * eta)
+    }
+    c.mu <- function(eta, p) {
+        c.phi(eta, p) / (1 - 2 * eta)
+    }
+    beta.dot <- function(eta, p) {
+        dif <- trigamma(.5 * (1 + p * eta) / eta) - trigamma(.5 / eta)
+        -.5 * dif / eta^2
+    }
+    N.matrix <- function(n = 2) {
+        ## returns a N matrix of order 'n'
+        sqr <- n^2
+        K <- commutation(n)
+        (K + diag(sqr)) / 2
+    }
+    asSymmetric <- function(x) {
+        ## force x to be symmetric
+        (x + t(x)) / 2
+    }
+    
+    Scatter <- object$Scatter
+    eta <- object$eta
 
-## https://github.com/cran/MVT/blob/master/src/init.c
-## https://github.com/cran/MVT/blob/master/src/fitter.c
+    p <- ncol(Scatter)
+    if (nrow(Scatter) != p)
+        stop("problem in the estimation algorithm")
+    if (!isSymmetric(Scatter))
+        Scatter <- asSymmetric(Scatter)
+    
+    Dp <- duplication(p)
+    Np <- N.matrix(p)
 
-## library(dplyr)
-## read.csv("~/example1_data1.csv") %>%
-##     filter(groups == 1) %>%
-##     select(a, b) %>%
-##     studentFit()
+    inv.Scatter <- solve(Scatter)
+    if (!isSymmetric(inv.Scatter))
+        inv.Scatter <- asSymmetric(inv.Scatter)
+    vec.Scatter <- as.vector(inv.Scatter)
+
+    ## Fisher information matrix about 'center'
+    fisher.center <- c.mu(eta, p) * inv.Scatter
+    if (!isSymmetric(fisher.center))
+        fisher.center <- asSymmetric(fisher.center)
+
+    ## Fisher information matrix about 'Scatter'
+    fisher.Scatter <- 2 * c.phi(eta, p) * kronecker(inv.Scatter, inv.Scatter) %*% Np
+    fisher.Scatter <- fisher.Scatter + (c.phi(eta, p) - 1) * outer(vec.Scatter, vec.Scatter)
+    fisher.Scatter <- .25 * crossprod(Dp, fisher.Scatter %*% Dp)
+    if (!isSymmetric(fisher.Scatter))
+        fisher.Scatter <- asSymmetric(fisher.Scatter)
+
+    ## crossed Fisher information about 'Scatter' and 'eta'
+    fisher.cross <- -(c.eta(eta) * (p + 2)) / ((1 + p * eta) * (1 + (p + 2) * eta))
+    fisher.cross <- fisher.cross * crossprod(Dp, vec.Scatter)
+
+    ## Fisher information about 'eta'
+    fisher.eta <- 1 + p * eta * (1 - 4 * eta) - 8 * eta^2
+    fisher.eta <- fisher.eta / ((1 + p * eta) * (1 + (p + 2) * eta))
+    fisher.eta <- fisher.eta * p / (1 - 2 * eta)^2
+    fisher.eta <- -.5 * (fisher.eta - beta.dot(eta, p)) / eta^2
+    
+    ## forming the Fisher information matrix
+    fisher <- matrix(0, nrow = p + ncol(Dp) + 1, ncol = p + ncol(Dp) + 1)
+    fisher[1:p, 1:p] <- fisher.center
+    rows <- cols <- seq.int(from = p + 1, length.out = ncol(Dp))
+    fisher[rows, cols] <- fisher.Scatter
+    cols <- ncol(fisher)
+    fisher[rows, cols] <- fisher[cols, rows] <- fisher.cross
+    fisher[cols, cols] <- fisher.eta
+    
+    fisher
+}
+
+duplication <-
+function(n = 1)
+{   ## returns a duplication matrix with order 'n'
+    ## posted at R-help by Charles Berry, 2006-09-09
+    n <- as.integer(n)
+    mat <- diag(n)
+    index <- seq(n * (n + 1) / 2)
+    mat[lower.tri(mat, TRUE)] <- index
+    mat[upper.tri(mat)] <- t(mat)[upper.tri(mat)]
+    outer(c(mat), index, function(x, y) ifelse(x == y, 1, 0))
+}
+
+
+
+commutation <-
+function(n = 2)
+{   ## returns a commutation matrix with order 'n' (only for square matrices)
+    ## fast algorithm by Feng Li <Feng.Li@stat.su.se>, 2012-03-14
+    n <- as.integer(n)
+    sqr <- n^2
+    mat <- matrix(0, nrow = sqr, ncol = sqr)
+    m0 <- seq_len(sqr)
+    n0 <- as.vector(t(matrix(m0, nrow = n, ncol = n)))
+    ind <- cbind(m0, n0)
+    dims <- c(sqr, sqr)
+    indMat <- matrix(ind, ncol = length(dims))
+    idx1 <- cumprod(dims[-length(dims)])
+    idx2 <- indMat[, -1, drop = FALSE] - 1
+    idxRaw <- rowSums(idx1 * idx2) + indMat[, 1]    
+    mat[idxRaw] <- 1
+    mat
+}

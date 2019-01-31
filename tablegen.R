@@ -1,35 +1,21 @@
-function (table, header) {
-  
-  #Create HTML Table
-  
-	cat('<table border="1"')
-    for (i in 1:nrow(table)) {
-        if (i == 1 & header == TRUE) {
-			cat('<tr>')
-			for (i in 1:length(table[1,])) {
-				cat('<td align="center"><b>', table[1,i], '</b></td>', sep="")
-			}
-			cat('</tr>')
+tableGen <- function (table) {
+    ## Create an html table from a matrix or data frame
 
-		} else {
-			cat('<tr>')
-			for (j in 1:length(table[i,])) {
-                            if (j == 1) {
-                                    if (header == TRUE) {
-										cat('<td align="right">', table[i,j], '&nbsp;&nbsp;&nbsp;</td>', sep="")
-                                    } else {
-										cat('<td>&nbsp;&nbsp;&nbsp;', table[i,j], '</td>', sep="")
-                                    }
-                            } else {
-                                if (header == TRUE) {
-									cat('<td align="right">', table[i,j], '&nbsp;&nbsp;&nbsp;</td>', sep="")
-                                } else {
-									cat('<td align="right">', table[i,j], '&nbsp;&nbsp;&nbsp;</td>', sep="")
-                                }
-                            }
-			}
-			cat('</tr>')
-		}
-	}
-	cat('</table>')
+    table <- as.matrix(table)
+
+    htmlTable <- '<table border="1">'
+
+    ## Create a header from the column names
+    header <- paste0('<td align="center"style="border-bottom:1px solid black"><b>', colnames(table), '</b></td>', collapse='')
+    header <- paste0('<tr>', header, '</tr>')
+    htmlTable <- paste0(htmlTable, header)
+
+    for (i in 1:nrow(table)) {
+        row <- paste0('<td align="right">', table[i,], '</td>', collapse='')
+        row <- paste0('<tr>', row, '</tr>')
+        htmlTable <- paste0(htmlTable, row)
+    }
+
+    htmlTable <- paste0(htmlTable, '</table>')
+
 }
