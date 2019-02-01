@@ -1,0 +1,44 @@
+HOV (dependent)
+
+ - Harris (1985), https://doi.org/10.2307/2336339
+ - MVT package, https://github.com/cran/MVT/blob/master/R/homogeneity.test.R
+
+HOV (independent)
+
+ - Bartlett (1937), https://doi.org/10.1098/rspa.1937.0109
+ - base R, https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/bartlett.test.R
+
+ - Fligner and Killeen (1976), https://doi.org/10.1080/01621459.1976.10481517
+ - base R, https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/fligner.test.R
+
+ - Levene (1960)
+ - car package, https://github.com/cran/car/blob/master/R/leveneTest.R
+
+Shape
+
+ - Kruskall and Wallis (1952), https://doi.org/10.1080/01621459.1952.10483441
+ - base R, https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/kruskal.test.R
+
+ - Wilcoxon (1945), https://doi.org/10.230/3001968
+ - base R, https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/wilcox.test.R
+
+Univariate normality
+
+ - Anderson and Darling (1954), https://doi.org/10.1007/978-3-642-04898-2_118
+ - nortest package, https://github.com/cran/nortest/blob/master/R/ad.test.R
+
+ - Cramer (1928), https://doi.org/10.1080/03461238.1928.10416862
+ - nortest package, https://github.com/cran/nortest/blob/master/R/cvm.test.R
+
+ - Lilliefors (1967), http://dx.doi.org/10.2307/2283970
+ - nortest package, https://github.com/cran/nortest/blob/master/R/lillie.test.R
+
+ - Pearson (1900), https://doi.org/10.1080%2F14786440009463897
+ - nortest package, https://github.com/cran/nortest/blob/master/R/pearson.test.R
+
+ - Shapiro and Francia (1972), http://dx.doi.org/10.1080/01621459.1972.10481232
+ - nortest package, https://github.com/cran/nortest/blob/master/R/sf.test.R
+
+Multivariate normality
+
+ - Mardia (1970), https://doi.org/10.1093/biomet/57.3.519
