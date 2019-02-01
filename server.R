@@ -88,7 +88,7 @@ shinyServer(function(input, output, session) {
             } else {
                 return()
             }
-        } else if (input$test == "normality") {
+        } else if (input$test == "normality" & length(input$groups) == 1) {
             univariate <- length(variables) == 1
             if (univariate) {
                 source("./univariateNormality/univariateNormality.R")
