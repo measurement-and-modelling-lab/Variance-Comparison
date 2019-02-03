@@ -11,12 +11,16 @@ shinyServer(function(input, output, session) {
         ## Ensure that a file has been uploaded
         validate(need(input$file, ""))
 
+        source("hasHeader.R")
+
         ## Read data as a matrix
         file <- input$file[[4]]
-        values$scores <- read.csv(file, header=TRUE)
+        include_header <- hasHeader(file)
+        values$scores <- read.csv(file, header=include_header)
 
         ## Create a variable list
         choices <- 1:ncol(values$scores)
+        names(choices) <- colnames(values$scores)
 
         ## Output ui element
         HTML(paste0(radioButtons("groupingVar",
