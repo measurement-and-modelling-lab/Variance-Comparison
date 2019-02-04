@@ -44,7 +44,7 @@ wilcoxon1945 <- function(x, y = NULL, alternative = c("two.sided", "less", "grea
         stop("not enough (finite) 'x' observations")
     CORRECTION <- 0
     if(is.null(y)) {
-        METHOD <- "Wilcoxon (1945) signed rank test"
+        METHOD <- "Wilcoxon (1945) signed-rank test"
         x <- x - mu
         ZEROES <- any(x == 0)
         if(ZEROES)
