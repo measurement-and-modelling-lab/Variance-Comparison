@@ -19,7 +19,7 @@ levene1960 <- function (y, group, center=median, ...) {
     statistic <- table$F[1]
     p.value <- table$"Pr(>F)"[1]
 
-    result <- list(method = "Levene's Test for homogeneity of variance",
+    result <- list(method = "Levene (1960)",
                    statistic = statistic,
                    df = df,
                    p.value = p.value)

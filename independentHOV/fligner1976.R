@@ -46,7 +46,7 @@ fligner1976 <- function(x, g, ...) {
     df <- k - 1
     p.value <- pchisq(statistic, df, lower.tail = FALSE)
 
-    result <- list(method = "Fligner-Killeen test of homogeneity of variances",
+    result <- list(method = "Fligner & Killeen (1976)",
                    statistic = statistic,
                    df = df,
                    p.value = p.value)

@@ -20,7 +20,7 @@ shapiro1972 <- function (x) {
     z <- (log(1 - W) - mu)/sig
     pval <- pnorm(z, lower.tail = FALSE)
 
-    result <- list(method = "Shapiro-Francia normality test",
+    result <- list(method = "Shapiro and Francia (1973) test",
                    statistic = W,
                    df = NA,
                    p.value = pval)

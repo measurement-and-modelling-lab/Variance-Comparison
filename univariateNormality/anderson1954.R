@@ -40,7 +40,7 @@ anderson1954 <- function (x)
         pval <- 3.7e-24
     }
 
-    result <- list(method = "Anderson-Darling normality test",
+    result <- list(method = "Anderson and Darling (1954)",
                    statistic = A,
                    df = NA,
                    p.value = pval)

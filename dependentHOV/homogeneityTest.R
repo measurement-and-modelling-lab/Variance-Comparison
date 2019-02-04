@@ -70,7 +70,7 @@ function(object, test = "LRT", type = "scale")
         LRT = {
           stat <- 2. * (fit$logLik - f0$logLik)
           names(stat) <- "LRT"
-          method <- "Likelihood ratio test"
+          method <- "Likelihood ratio test (Harris, 1985)"
         },
         Wald = {
           phi  <- fit$Scatter[lower.tri(fit$Scatter, diag = TRUE)]
@@ -95,7 +95,7 @@ function(object, test = "LRT", type = "scale")
             stat <- stat + n * sum(dif^2)
           }
           names(stat) <- "Wald"
-          method <- "Wald test"
+          method <- "Wald test (Harris, 1985)"
         },
         score = {
           Score <- restrictedScore(fit$x, f0$weights, f0$center, f0$Scatter)
@@ -119,7 +119,7 @@ function(object, test = "LRT", type = "scale")
             stat <- stat + sum(s^2) / n
           }
           names(stat)<-"Score"
-          method <- "Score test"
+          method <- "Score test (Harris, 1985)"
         },
         gradient = {
           phi  <- fit$Scatter[lower.tri(fit$Scatter, diag = TRUE)]
@@ -134,7 +134,7 @@ function(object, test = "LRT", type = "scale")
             stat <- stat + sum(s * dif)
           }
           names(stat) <- "Gradient"
-          method <- "Gradient test"
+          method <- "Gradient test (Harris, 1985)"
         },
         stop(paste("unimplemented test:", test))
         )

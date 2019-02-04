@@ -44,7 +44,7 @@ wilcoxon1945 <- function(x, y = NULL, alternative = c("two.sided", "less", "grea
         stop("not enough (finite) 'x' observations")
     CORRECTION <- 0
     if(is.null(y)) {
-        METHOD <- "Wilcoxon signed rank test"
+        METHOD <- "Wilcoxon (1945) signed rank test"
         x <- x - mu
         ZEROES <- any(x == 0)
         if(ZEROES)
@@ -228,7 +228,7 @@ wilcoxon1945 <- function(x, y = NULL, alternative = c("two.sided", "less", "grea
     else { ##-------------------------- 2-sample case ---------------------------
         if(length(y) < 1L)
             stop("not enough 'y' observations")
-        METHOD <- "Wilcoxon rank sum test"
+        METHOD <- "Wilcoxon (1945) rank-sum test"
         r <- rank(c(x - mu, y))
         n.x <- as.double(length(x))
         n.y <- as.double(length(y))

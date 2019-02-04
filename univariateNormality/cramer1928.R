@@ -38,7 +38,7 @@ cramer1928 <- function (x)
       pval <- 7.37e-10
     }
 
-    result <- list(method = "Cramer-von Mises normality test",
+    result <- list(method = "Cramer-von Mises (1928)",
                    statistic = W,
                    df = NA,
                    p.value = pval)

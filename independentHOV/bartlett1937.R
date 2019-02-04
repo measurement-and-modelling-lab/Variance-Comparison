@@ -52,7 +52,7 @@ bartlett1937 <- function(x, g, ...) {
     df <- k - 1
     p.value <- pchisq(statistic, df, lower.tail = FALSE)
 
-    result <- list(method = "Bartlett test of homogeneity of variances",
+    result <- list(method = "Bartlett (1937)",
                    statistic = statistic,
                    df = df,
                    p.value = p.value)

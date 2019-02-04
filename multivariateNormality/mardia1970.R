@@ -27,12 +27,12 @@ mardia1970 <- function(X) {
     P2 = 2*(1-pnorm(abs(MKT), 0, 1))
 
     ## Assemble row of table
-    skewness <- list(method = "Mardia's skewness",
+    skewness <- list(method = "Mardia's (1970) test of multivariate skewness",
                      statistic = MST,
                      df = df,
                      p.value = P1)
 
-    kurtosis <- list(method = "Mardia's kurtosis",
+    kurtosis <- list(method = "Mardia's (1970) test of multivariate kurtosis",
                      statistic = MKT,
                      df = df,
                      p.value = P2)

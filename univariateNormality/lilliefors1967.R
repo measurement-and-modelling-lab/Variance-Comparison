@@ -57,7 +57,7 @@
         }
     }
 
-    result <- list(method = "Lilliefors (Kolmogorov-Smirnov) normality test",
+    result <- list(method = "Lilliefors' (1967) modified Kolmogorov-Smirnov",
                    statistic = K,
                    df = NA,
                    p.value = pvalue)

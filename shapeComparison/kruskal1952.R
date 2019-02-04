@@ -57,7 +57,7 @@ kruskal1952 <- function(x, g, ...) {
     names(STATISTIC) <- "Kruskal-Wallis chi-squared"
     names(PARAMETER) <- "df"
 
-    result <- list(method = "Kruskal-Wallis rank sum test",
+    result <- list(method = "Kruskal and Wallis (1952) rank-sum test",
                    statistic = STATISTIC,
                    df = PARAMETER,
                    p.value = PVAL)
