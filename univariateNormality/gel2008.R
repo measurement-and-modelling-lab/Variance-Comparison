@@ -1,7 +1,7 @@
 gel2008 <- function (x, option="RJB", crit.values="chisq.approximation", N=0) {
     ## Gel and Gastwirth's (2008) modified Jarque-Bera test of univariate normality
     ## https://doi.org/10.1016/j.econlet.2007.05.022
-e   ## https://github.com/cran/lawstat/blob/master/R/rjb.test.R
+    ## https://github.com/cran/lawstat/blob/master/R/rjb.test.R
 
     option<-match.arg(option) 
     crit.values=match.arg(crit.values)
