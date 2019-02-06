@@ -36,7 +36,7 @@ shapiro1965 <- function(X) {
 
 
         results <- list(method = "Shapiro-Wilk (1965)",
-                        statistic = wast,
+                        statistic = w1,
                         df = NA,
                         p.value = p.value)
         
