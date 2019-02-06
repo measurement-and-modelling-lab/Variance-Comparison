@@ -45,7 +45,7 @@ Univariate normality
  - normwhn.test package, https://github.com/cran/normwn.test/blob/master/R/normality.test1.R
 
  - Gel-Gastwirth (2008), https://doi.org/10.1016/j.econlet.2007.05.022
- - Not sure which package it came from
+ - lawstat package, https://github.com/cran/lawstat/blob/master/R/rjb.test.R
 
  - Jarque-Bera (1980), https://doi.org/10.1016/0165-1765(80)90024-5
  - https://github.com/cran/tsoutliers/blob/master/R/JarqueBera-test.R
