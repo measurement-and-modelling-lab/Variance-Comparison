@@ -28,11 +28,27 @@ Shape
 
 Univariate normality
 
+ - d'Agostino and Pearson (1973), https://doi.org/10.1093/biomet/60.3.613
+ - moments package, https://github.com/cran/moments/blob/master/R/agostino.test.R
+
  - Anderson and Darling (1954), https://doi.org/10.1007/978-3-642-04898-2_118
  - nortest package, https://github.com/cran/nortest/blob/master/R/ad.test.R
 
+ - Bonett-Seier (2002), https://doi.org/10.1016/S0167-9473(02)00074-9
+ - moments package, https://github.com/cran/moments/blob/master/R/bonett.test.R
+ - test of kurtosis only?
+
  - Cramer (1928), https://doi.org/10.1080/03461238.1928.10416862
  - nortest package, https://github.com/cran/nortest/blob/master/R/cvm.test.R
+
+ - Doornik-Hansen, https://doi.org/10.1111/j.1468-0084.2008.00537.x
+ - normwhn.test package, https://github.com/cran/normwn.test/blob/master/R/normality.test1.R
+
+ - Gel-Gastwirth (2008), https://doi.org/10.1016/j.econlet.2007.05.022
+ - Not sure which package it came from
+
+ - Jarque-Bera (1980), https://doi.org/10.1016/0165-1765(80)90024-5
+ - https://github.com/cran/tsoutliers/blob/master/R/JarqueBera-test.R
 
  - Lilliefors (1967), http://dx.doi.org/10.2307/2283970
  - nortest package, https://github.com/cran/nortest/blob/master/R/lillie.test.R
@@ -40,9 +56,24 @@ Univariate normality
  - Pearson (1900), https://doi.org/10.1080%2F14786440009463897
  - nortest package, https://github.com/cran/nortest/blob/master/R/pearson.test.R
 
+ - Shapiro and Wilk (1965), https://doi.org/10.1093/biomet/52.3-4.591
+ - mvShapiroTest package, https://github.com/cran/mvShapiroTest/blob/master/R/mvshapiro.test.R
+
  - Shapiro and Francia (1972), http://dx.doi.org/10.1080/01621459.1972.10481232
  - nortest package, https://github.com/cran/nortest/blob/master/R/sf.test.R
 
 Multivariate normality
 
+ - Doornik-Hansen (2008), https://doi.org/10.1111/j.1468-0084.2008.00537.x
+ - MVN package, https://github.com/selcukorkmaz/MVN/blob/master/R/mvn.R
+
+ - Henze and Zerkler (1990), http://dx.doi.org/10.1080/03610929008830400 
+ - MVN package, https://github.com/selcukorkmaz/MVN/blob/master/R/mvn.R
+
  - Mardia (1970), https://doi.org/10.1093/biomet/57.3.519
+
+ - Royston's (1982), https://doi.org/10.2307/2347973
+ - MVN package, https://github.com/selcukorkmaz/MVN/blob/master/R/mvn.R
+
+ - Shapiro (1965), https://doi.org/10.2307/2333709
+ - https://github.com/cran/mvShapiroTest/blob/master/R/mvshapiro.test.R
