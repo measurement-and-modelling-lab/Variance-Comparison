@@ -102,10 +102,14 @@ shinyServer(function(input, output, session) {
                 table <- multivariateNormality(values)
             }
         } else if (input$test == "shape") {
-            compatible <- length(input$groups) > 1 & length(variables) == 1
-            if (compatible) {
-                source("./shapeComparison/shapeComparison.R")
-                table <- shapeComparison(values, groups)
+            univariate <- length(input$groups) > 1 & length(variables) == 1
+            multivariate <- length(input$groups) == 1 & length(variables) > 1
+            if (univariate) {
+                source("./shapeUnivariate/shapeUnivariate.R")
+                table <- shapeUnivariate(values, groups)
+            } else if (multivariate) {
+                source("./shapeMultivariate/shapeMultivariate.R")
+                table <- shapeMultivariate(values)
             } else {
                 return()
             }
