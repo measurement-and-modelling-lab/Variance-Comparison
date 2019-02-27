@@ -84,11 +84,11 @@ shinyServer(function(input, output, session) {
         if (input$test == "hov") {
             dependent <- length(variables) > 1
             if (dependent) {
-                source("./dependentHOV/dependentHOV.R")
-                table <- dependentHOV(values)
+                source("./hovDependent/hovDependent.R")
+                table <- hovDependent(values)
             } else if (length(input$groups) > 1) {
-                source("./independentHOV/independentHOV.R")
-                table <- independentHOV(values, groups)
+                source("./hovIndependent/hovIndependent.R")
+                table <- hovIndependent(values, groups)
             } else {
                 return()
             }
@@ -96,13 +96,13 @@ shinyServer(function(input, output, session) {
             univariate <- length(variables) == 1
             one_group <- length(input$groups) == 1
             if (univariate & one_group) {
-                source("./univariateNormality/univariateNormality.R")
-                table <- univariateNormality(values)
+                source("./normalityUnivariate/normalityUnivariate.R")
+                table <- normalityUnivariate(values)
             } else if (!univariate & one_group) {
-                source("./multivariateNormality/multivariateNormality.R")
-                table <- multivariateNormality(values)
+                source("./normalityMultivariate/normalityMultivariate.R")
+                table <- normalityMultivariate(values)
             } else {
-                source("./multivariateNormality/mardia1970.R")
+                source("./normalityMultivariate/mardia1970.R")
                 table <- mardiaMultigroup(values, groups)
             }
         } else if (input$test == "shape") {
