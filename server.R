@@ -92,14 +92,18 @@ shinyServer(function(input, output, session) {
             } else {
                 return()
             }
-        } else if (input$test == "normality" & length(input$groups) == 1) {
+        } else if (input$test == "normality") {
             univariate <- length(variables) == 1
-            if (univariate) {
+            one_group <- length(input$groups) == 1
+            if (univariate & one_group) {
                 source("./univariateNormality/univariateNormality.R")
                 table <- univariateNormality(values)
-            } else {
+            } else if (!univariate & one_group) {
                 source("./multivariateNormality/multivariateNormality.R")
                 table <- multivariateNormality(values)
+            } else {
+                source("./multivariateNormality/mardia1970.R")
+                table <- mardiaMultigroup(values, groups)
             }
         } else if (input$test == "shape") {
             univariate <- length(input$groups) > 1 & length(variables) == 1

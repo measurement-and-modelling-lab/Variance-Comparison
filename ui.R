@@ -10,7 +10,7 @@ shinyUI(fluidPage(theme = "simplex.css",
   sidebarPanel(
     selectInput("test", label = "Choose calculation", 
                 choices = list("Homogeneity of variance" = "hov",
-                               "Shape" = "shape", 
+                               "Shape comparison" = "shape",
                                "Normality" = "normality")),
     fileInput("file", label = "File input"),
     uiOutput("chooseGroupingVar"),
