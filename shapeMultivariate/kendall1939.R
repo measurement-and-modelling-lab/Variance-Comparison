@@ -1,4 +1,8 @@
 kendall1939 <- function(ratings, correct=TRUE) {
+    ## Kendall (1939)
+    ## https://doi.org/10.1214%2Faoms%2F1177732186
+    ## https://github.com/cran/irr/blob/master/R/kendall.R
+    
     ratings <- as.matrix(na.omit(ratings))
 
     ns <- nrow(ratings)
@@ -42,7 +46,7 @@ kendall1939 <- function(ratings, correct=TRUE) {
     df1     <- ns-1
     p.value <- pchisq(Xvalue, df1, lower.tail = FALSE)
 
-    result <- list(method = paste("Kendall's coefficient of concordance", coeff.name),
+    result <- list(method = paste("Kendall's (1939) coefficient of concordance", coeff.name),
                    ##subjects = ns,
                    ##raters = nr,
                    ##irr.name = coeff.name,
