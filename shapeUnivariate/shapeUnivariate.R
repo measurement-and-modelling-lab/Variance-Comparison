@@ -4,13 +4,13 @@ shapeUnivariate <- function(values, groups) {
     ## Load tests
     source("./shapeUnivariate/jonckheere1954.R")
     source("./shapeUnivariate/kruskal1952.R")
-    source("./shapeUnivariate/wilcoxon1945.R")
+    source("./shapeUnivariate/wilcoxon1945b.R")
 
     ## Run each test and assemble as data frame
     output <- rbind(data.frame(),
                     jonckheere1954(values, groups),
                     kruskal1952(values, groups),
-                    wilcoxon1945(values, groups))
+                    wilcoxon1945b(values, groups))
 
     ## Format output
     output$statistic <- round(output$statistic, 2)
@@ -19,3 +19,6 @@ shapeUnivariate <- function(values, groups) {
     ## Return output
     return(output)
 }
+
+
+
