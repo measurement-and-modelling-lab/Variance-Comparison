@@ -1,4 +1,4 @@
-skew<-function(x,method="unbiased"){
+skew<-function(x,meth="unbiased"){
 
     m.i<-function(x,i){
         n<-length(as.vector(x))
@@ -6,29 +6,29 @@ skew<-function(x,method="unbiased"){
         m}
 
     n<-length(as.vector(x))
-    if(method=="unbiased"){
+    if(meth=="unbiased"){
         skew<-(n/((n-1)*(n-2)))*sum(((x-mean(x))/sd(x))^3)}
 
-    if(method=="moments"){
+    if(meth=="moments"){
         skew<-m.i(x,3)/(m.i(x,2)^(3/2))}
     skew
 }
 
-kurt<-function(x,method="unbiased"){
+kurt<-function(x,meth="unbiased"){
     m.i<-function(x,i){
         n<-length(as.vector(x))
         m<-(1/n)*sum((x-mean(x))^i)
         m}
 
     n<-length(as.vector(x))
-    if(method=="unbiased"){
+    if(meth=="unbiased"){
         kurtosis<-((n*(n+1))/((n-1)*(n-2)*(n-3)))*sum(((x-mean(x))/sd(x))^4)-
             ((3*((n-1)^2))/((n-2)*(n-3)))}
 
-    if(method=="moments"){
+    if(meth=="moments"){
         kurtosis<-m.i(x,4)/(m.i(x,2)^2)}
 
-    if(method=="excess"){
+    if(meth=="excess"){
         kurtosis<-(m.i(x,4)/(m.i(x,2)^2))-3}
     kurtosis
 }
