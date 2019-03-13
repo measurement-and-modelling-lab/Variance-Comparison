@@ -32,7 +32,7 @@ agostino1983 <- function (x, alternative=c("two.sided","less","greater")) {
         alt <- "data have negative skewness"
     }
 
-    result <- c(method = "d'Agostino test of skewness",
+    result <- c(method = "d'Agostino (1983) test of skewness",
                 statistic = z,
                 df = NA,
                 p.value = pval)

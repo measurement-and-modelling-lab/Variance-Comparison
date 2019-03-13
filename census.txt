@@ -1,4 +1,18 @@
-   Likelihood ratio test (Harris, 1985) Wald test (Harris, 1985) Score test (Harris, 1985) Gradient test (Harris, 1985)
+./hovDependent
+   Harris (1985) likelihood-ratio test
+     https://doi.org/10.2307/2336339
+     https://github.com/cran/MVT/blob/master/R/homogeneity.test.R
+   Harris (1985) gradient test
+     https://doi.org/10.2307/2336339
+     https://github.com/cran/MVT/blob/master/R/homogeneity.test.R
+   Harris (1985) Wald test
+     https://doi.org/10.2307/2336339
+     https://github.com/cran/MVT/blob/master/R/homogeneity.test.R
+   Harris (1985) score test
+     https://doi.org/10.2307/2336339
+     https://github.com/cran/MVT/blob/master/R/homogeneity.test.R
+
+./hovIndependent
    Bartlett (1937)
      https://doi.org/10.1098/rspa.1937.0109
      https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/bartlett.test.R
@@ -7,31 +21,41 @@
    Fligner and Killeen (1976)
      https://doi.org/10.1080/01621459.1976.10481517
      https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/fligner.test.R
-   ML Mardia's (1970) skewness test ML Mardia's (1970) kurtosis test Mardia's (1970) skewness test Mardia's (1970) kurtosis test
-     https://doi.org/10.1093/biomet/57.3.519 https://doi.org/10.1093/biomet/57.3.519
+
+./normalityMultivariate
+   Mardia (1970) kurtosis test
+     https://doi.org/10.1093/biomet/57.3.519
+   Mardia (1970) omnibus kurtosis test
+     https://doi.org/10.1093/biomet/57.3.519
+   Mardia (1970) skewness test
+     https://doi.org/10.1093/biomet/57.3.519
    Royston (1982)
      https://doi.org/10.2307/2347973
      https://github.com/selcukorkmaz/MVN/blob/master/R/mvn.R
    Shapiro-Wilk (1965)
      https://doi.org/10.2307/2333709
      https://github.com/cran/mvShapiroTest/blob/master/R/mvshapiro.test.R
+   Mardia (1970) omnibus skewness test
+     https://doi.org/10.1093/biomet/57.3.519
    Doornik-Hansen (2008)
      https://doi.org/10.1111/j.1468-0084.2008.00537.x
      https://github.com/selcukorkmaz/MVN/blob/master/R/mvn.R
    Henze-Zirkler (1990)
      https://github.com/selcukorkmaz/MVN/blob/master/R/mvn.R
-   The 3rd Hosking(1990)
+
+./normalityUnivariate
+   Hosking (1990), #3
      https://doi.org/10.1111/j.2517-6161.1990.tb01775.x
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat12.cpp
-   The 2nd Bontemps-Meddahi(2005)
+   The 2nd Bontemps-Meddahi (2005)
      https://doi.org/10.1016/j.jeconom.2004.02.014
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat15.cpp
    Doornik and Hansen (1994)
      https://doi.org/10.1111/j.1468-0084.2008.00537.x
      https://github.com/cran/normwn.test/blob/master/R/normality.test1.R
-   Pearson's (1900) chi-square test
+   Pearson (1900)
      https://github.com/cran/nortest/blob/master/R/pearson.test.R
-   The 1st Hosking(1990) test for normality
+   Hosking (1990), #1
      https://doi.org/10.1111/j.2517-6161.1990.tb01775.x
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat10.cpp
    Bonett-Seier (2002)
@@ -42,18 +66,18 @@
    Anderson and Darling (1954)
      https://doi.org/10.1007/978-3-642-04898-2_118
      https://github.com/cran/nortest/blob/master/R/ad.test.R
-   Gel-Gastwirth(2008)
+   Gel and Gastwirth (2008)
      https://doi.org/10.1016/j.econlet.2007.05.022
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat9.cpp
-   The 2nd Hosking(1990)
+   Hosking (1990), #2
      https://doi.org/10.1111/j.2517-6161.1990.tb01775.x
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat11.cpp
-   d'Agostino test of skewness
+   d'Agostino (1983) test of skewness
      https://doi.org/10.1093/biomet/70.1.227
    Shapiro-Wilk (1965)
      https://doi.org/10.1093/biomet/52.3-4.591
      https://github.com/cran/mvShapiroTest/blob/master/R/mvshapiro.test.R
-   The 4th Hosking(1990)
+   Hosking (1990), #4
      https://doi.org/10.1111/j.2517-6161.1990.tb01775.x
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat13.cpp
    Jarque and Bera (1980)
@@ -62,7 +86,7 @@
    Cramer and von Mises (1928)
      https://doi.org/10.1080/03461238.1928.10416862
      https://github.com/cran/nortest/blob/master/R/cvm.test.R
-   Bonett-Seier(2002)
+   Bonett-Seier (2002)
      https://doi.org/10.1016/S0167-9473(02)00074-9
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat17.cpp
    Shapiro and Francia (1973)
@@ -72,17 +96,26 @@
    Gel-Gastwirth (2008) robust Jarque-Bera
      https://doi.org/10.1016/j.econlet.2007.05.022
      https://github.com/cran/lawstat/blob/master/R/rjb.test.R
-   The 1st Bontemps-Meddahi(2005)
+   The 1st Bontemps-Meddahi (2005)
      https://doi.org/10.1016/j.jeconom.2004.02.014
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat14.cpp
-   Kendall's (1939) coefficient of concordance
+
+./shapeMultivariate
+   Wilcoxon (1945) signed-rank test
+     https://doi.org/10.230/3001968
+     https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/wilcox.test.R
+   Kendall (1939) coefficient of concordance
      https://doi.org/10.1214%2Faoms%2F1177732186
      https://github.com/cran/irr/blob/master/R/kendall.R
+
+./shapeUnivariate
    Kruskal-Wallis (1952) rank-sum test
      https://doi.org/10.1080/01621459.1952.10483441
      https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/kruskal.test.R
+   Wilcoxon (1945) rank-sum test
      https://doi.org/10.230/3001968
      https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/wilcox.test.R
    Jonckheere (1954) trend test
      https://doi.org/10.2307/2333011
      https://github.com/cran/PMCMR/blob/master/R/jonckheere.test.R
+

@@ -2,7 +2,8 @@ normalityMultivariate <- function(data) {
     ## Load tests
     source("./normalityMultivariate/doornik2008.R")
     source("./normalityMultivariate/henze1990.R")
-    source("./normalityMultivariate/mardia1970.R")
+    source("./normalityMultivariate/mardia1970a.R")
+    source("./normalityMultivariate/mardia1970b.R")
     source("./normalityMultivariate/royston1982.R")
     source("./normalityMultivariate/shapiro1965.R")
 
@@ -10,8 +11,8 @@ normalityMultivariate <- function(data) {
     output <- rbind(data.frame(),
                     doornik2008(data),
                     henze1990(data),
-                    mardia1970_kurtosis(data),
                     mardia1970_skewness(data),
+                    mardia1970_kurtosis(data),
                     royston1982(data),
                     shapiro1965(data))
 

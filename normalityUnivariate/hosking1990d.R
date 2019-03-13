@@ -49,7 +49,7 @@ hosking1990d <- function(x){
   statTLmom3 <- tau33^2 / vtau33 + (tau43 - mutau43)^2 / vtau43
   PVAL <- 1 - pchisq(statTLmom3, 2)
   
-  result <- list(method = "The 4th Hosking(1990)",
+  result <- list(method = "Hosking (1990), #4",
                  statistic = statTLmom3,
                  df = 2,
                  p.value = PVAL)

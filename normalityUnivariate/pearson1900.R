@@ -17,7 +17,7 @@ pearson1900 <- function (x, n.classes = ceiling(2 * (n^(2/5))), adjust = TRUE) {
     P <- sum(h)
     pvalue <- pchisq(P, n.classes - dfd - 1, lower.tail = FALSE)
     df <- n.classes - 1 - dfd
-    result <- list(method = "Pearson's (1900) chi-square test",
+    result <- list(method = "Pearson (1900)",
                    statistic = P,
                    df = df,
                    p.value = pvalue)

@@ -1,12 +1,15 @@
-harris1985c <-
-  function(object, type = "scale"){
+harris1985c <- function(object, type = "scale"){
+    ## Harris (1985)
+    ## https://doi.org/10.2307/2336339
+    ## https://github.com/cran/MVT/blob/master/R/homogeneity.test.R 
+    
     source("./hovDependent/functions/fisherinfo.R")
     source("./hovDependent/functions/duplication.R")
     
     ## local functions
     homogeneityFit <-
-      function(z, dims, settings, center, Scatter, control, type)
-      {
+        function(z, dims, settings, center, Scatter, control, type)
+    {
         ctrl <- unlist(control)
         ctrl <- c(ctrl, type, 0)
         n <- dims[1]
@@ -32,10 +35,10 @@ harris1985c <-
         o$eta <- o$settings[2]
         o$numIter <- o$control[5]
         o
-      }
+    }
     restrictedScore <-
-      function(z, weights, center, Scatter)
-      {
+        function(z, weights, center, Scatter)
+    {
         n <- nrow(z)
         p <- ncol(z)
         z <- sweep(z, 2, center)
@@ -50,16 +53,16 @@ harris1985c <-
         s.Scatter <- .5 * crossprod(Dp, as.vector(s.Scatter))
         s <- c(s.center, as.vector(s.Scatter))
         s
-      }
+    }
     
     both <- pmatch(type, table = c("scale", "both")) - 1
     if (is.na(both))
-      stop("not valid 'type' argument")
+        stop("not valid 'type' argument")
     
     ## extract object info
     fit <- object
     if (!inherits(fit, "studentFit"))
-      stop("Use only with 'studentFit' objects")
+        stop("Use only with 'studentFit' objects")
     n <- fit$dims[1]
     p <- fit$dims[2]
     
@@ -76,32 +79,31 @@ harris1985c <-
     rows <- cols <- seq.int(from = 1, length.out = p * (p + 1) / 2)
     acol <- ncol(aCov)
     if (f0$eta != 0.0)
-      aCov <- aCov[rows,cols] - outer(aCov[rows,acol], aCov[rows,acol]) / aCov[acol,acol]
+        aCov <- aCov[rows,cols] - outer(aCov[rows,acol], aCov[rows,acol]) / aCov[acol,acol]
     else
-      aCov <- aCov[rows,cols]
+        aCov <- aCov[rows,cols]
     R <- chol(aCov)
     s <- solve(t(R), s)
     stat <- sum(s^2) / n
     if (both) {
-      aCov <- Fisher[1:p,1:p]
-      s <- Score[1:p]
-      R <- chol(aCov)
-      s <- solve(t(R), s)
-      stat <- stat + sum(s^2) / n
+        aCov <- Fisher[1:p,1:p]
+        s <- Score[1:p]
+        R <- chol(aCov)
+        s <- solve(t(R), s)
+        stat <- stat + sum(s^2) / n
     }
     names(stat)<-"Score"
-    method <- "Score test (Harris, 1985)"
     
     df <- p - 1
     if (both)
-      df <- df - 1
+        df <- df - 1
     pval <- 1 - pchisq(stat, df = df)
     
-    result <- list(method = method,
+    result <- list(method = "Harris (1985) score test",
                    statistic = stat,
                    df = df,
                    p.value = pval)
     
     return(result)
     
-  }
+}

@@ -18,7 +18,7 @@ bontempsmeddahi2005a <- function(x){
   statBM34 <- (tmp3^2 + tmp4^2)/n
   PVAL <- 1 - pchisq(statBM34, 2)
   
-  result <- list(method = "The 1st Bontemps-Meddahi(2005)",
+  result <- list(method = "The 1st Bontemps-Meddahi (2005)",
                  statistic = statBM34,
                  df = 2,
                  p.value = PVAL)

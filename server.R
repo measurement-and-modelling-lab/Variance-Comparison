@@ -102,8 +102,10 @@ shinyServer(function(input, output, session) {
                 source("./normalityMultivariate/normalityMultivariate.R")
                 table <- normalityMultivariate(values)
             } else {
-                source("./normalityMultivariate/mardia1970.R")
-                table <- mardiaMultigroup(values, groups)
+                source("./normalityMultivariate/mardia1970c.R")
+                source("./normalityMultivariate/mardia1970d.R")
+                table <- rbind(mardia1970_omnibus_skewness(values, groups),
+                               mardia1970_omnibus_kurtosis(values, groups))
             }
         } else if (input$test == "shape") {
             univariate <- length(input$groups) > 1 & length(variables) == 1

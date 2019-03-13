@@ -195,7 +195,7 @@ wilcoxon1945b <- function(x, y = NULL, alternative = c("two.sided", "less", "gre
   }
   
   names(mu) <- if(paired || !is.null(y)) "location shift" else "location"
-  result <- list(method = METHOD,
+    result <- list(method = "Wilcoxon (1945) rank-sum test", ## won't say 'with continuity correction'
                  statistic = STATISTIC,
                  df = NA,
                  p.value = as.numeric(PVAL))

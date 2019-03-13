@@ -1,11 +1,14 @@
-harris1985d <-
-  function(object, type = "scale"){
+harris1985d <- function(object, type = "scale") {
+    ## Harris (1985)
+    ## https://doi.org/10.2307/2336339
+    ## https://github.com/cran/MVT/blob/master/R/homogeneity.test.R 
+    
     source("./hovDependent/functions/duplication.R")
     
     ## local functions
     homogeneityFit <-
-      function(z, dims, settings, center, Scatter, control, type)
-      {
+        function(z, dims, settings, center, Scatter, control, type)
+    {
         ctrl <- unlist(control)
         ctrl <- c(ctrl, type, 0)
         n <- dims[1]
@@ -31,10 +34,10 @@ harris1985d <-
         o$eta <- o$settings[2]
         o$numIter <- o$control[5]
         o
-      }
+    }
     restrictedScore <-
-      function(z, weights, center, Scatter)
-      {
+        function(z, weights, center, Scatter)
+    {
         n <- nrow(z)
         p <- ncol(z)
         z <- sweep(z, 2, center)
@@ -49,16 +52,16 @@ harris1985d <-
         s.Scatter <- .5 * crossprod(Dp, as.vector(s.Scatter))
         s <- c(s.center, as.vector(s.Scatter))
         s
-      }
+    }
     
     both <- pmatch(type, table = c("scale", "both")) - 1
     if (is.na(both))
-      stop("not valid 'type' argument")
+        stop("not valid 'type' argument")
     
     ## extract object info
     fit <- object
     if (!inherits(fit, "studentFit"))
-      stop("Use only with 'studentFit' objects")
+        stop("Use only with 'studentFit' objects")
     n <- fit$dims[1]
     p <- fit$dims[2]
     
@@ -75,23 +78,21 @@ harris1985d <-
     s <- Score[-(1:p)]
     stat <- sum(s * dif)
     if (both) {
-      dif <- fit$center - f0$center
-      s <- Score[1:p]
-      stat <- stat + sum(s * dif)
+        dif <- fit$center - f0$center
+        s <- Score[1:p]
+        stat <- stat + sum(s * dif)
     }
     names(stat) <- "Gradient"
-    method <- "Gradient test (Harris, 1985)"
     
     df <- p - 1
     if (both)
-      df <- df - 1
+        df <- df - 1
     pval <- 1 - pchisq(stat, df = df)
     
-    result <- list(method = method,
+    result <- list(method = "Harris (1985) gradient test",
                    statistic = stat,
                    df = df,
                    p.value = pval)
     
     return(result)
-    
-  }
+}

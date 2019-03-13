@@ -1,0 +1,4 @@
+Calculation: Normality
+Groups: 1, 2, 3
+Variables: 1, 2
+Error: Warning in data[, groupingVar] == groups : longer object length is not a multiple of shorter object length

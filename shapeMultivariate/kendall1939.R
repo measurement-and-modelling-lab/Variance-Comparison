@@ -46,7 +46,7 @@ kendall1939 <- function(ratings, correct=TRUE) {
     df1     <- ns-1
     p.value <- pchisq(Xvalue, df1, lower.tail = FALSE)
 
-    result <- list(method = paste("Kendall's (1939) coefficient of concordance", coeff.name),
+    result <- list(method = paste("Kendall (1939) coefficient of concordance", coeff.name),
                    ##subjects = ns,
                    ##raters = nr,
                    ##irr.name = coeff.name,
