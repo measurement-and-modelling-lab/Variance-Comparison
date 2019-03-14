@@ -1,6 +1,6 @@
 kendall1939 <- function(ratings, correct=TRUE) {
     ## Kendall (1939)
-    ## https://doi.org/10.1214%2Faoms%2F1177732186
+    ## https://doi.org/10.1214/aoms/1177732186
     ## https://github.com/cran/irr/blob/master/R/kendall.R
     
     ratings <- as.matrix(na.omit(ratings))
