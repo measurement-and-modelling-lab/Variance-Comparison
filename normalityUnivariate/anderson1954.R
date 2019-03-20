@@ -1,4 +1,4 @@
-anderson1954 <- function (x)
+anderson1954 <- function (x){
     ## The Anderson and Darling's (1954) test of normality
     ## https://doi.org/10.1007/978-3-642-04898-2_118
     ## https://github.com/cran/nortest/blob/master/R/ad.test.R
