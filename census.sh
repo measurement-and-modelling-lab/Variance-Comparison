@@ -9,9 +9,10 @@ do
 
     [[ "${array[@]}" =~ "$d" ]] && echo "$d" >> census.txt
 
-    files=$(find $d | grep "\.R")
+    files=$(find $d | grep "\.R" | sort -d -f)
     for i in $files
     do
+
 	test=$(cat $i | grep "(method" | grep -o "\".*\"" | tr -d "\"")
 	doi=$(cat $i | grep -o "https://doi.org.*")
 	link=$(cat $i | grep -o "https://github.com.*")

@@ -1,5 +1,5 @@
 agostino1973 <- function(x) {
-    ## d'Agostino and Pearson (1973) test of univariate normality
+    ## D'Agostino and Pearson (1973) test of univariate normality
     ## https://doi.org/10.1093/biomet/60.3.613
     ## https://github.com/cran/moments/blob/master/R/agostino.test.R
     

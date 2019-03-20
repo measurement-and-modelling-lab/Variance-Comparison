@@ -17,7 +17,7 @@ agostino1971<- function(x){
   D <- Tx/((n*n)*sqrt(varX))
   statDa <- sqrt(n)*(D - 0.28209479)/0.02998598
   
-  result <- list(method = "D'Agostino, R.B. (1971)",
+  result <- list(method = "D'Agostino (1971)",
                  statistic = statDa,
                  df = NA,
                  p.value = NA)
