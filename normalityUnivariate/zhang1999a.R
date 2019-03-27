@@ -42,19 +42,12 @@ zhang1999a <- function(x){
     statQ <- log(q1/q2)
     
     result <- list(method = "Zhang, P (1999), #1",
+                   doi = "https://doi.org/10.1080/02664769922395",
                    statistic = statQ,
                    df = NA,
                    p.value = NA)
     
     return(result)
     
-  }else{
-    result <- list(method = "Zhang, P (1999), #1",
-                   doi = "https://doi.org/10.1080/02664769922395",
-                   statistic = NA,
-                   df = NA,
-                   p.value = NA)
-    return(result)
   }
-  
 }
