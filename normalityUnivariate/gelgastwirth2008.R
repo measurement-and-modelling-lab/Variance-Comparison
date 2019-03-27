@@ -16,10 +16,10 @@ gelgastwirth2008 <- function(x){
   m4 <- m4/n
   x <- sort(x)
   if (n%%2 == 0) {
-    M<-(x[n/2]+x[n/2-1])/2
+    M<-(x[n/2+1]+x[n/2])/2
   }
   else{
-    M<- x[n/2]
+    M<- x[n/2+1]
   }
   for (i in 1:n){
     Jn <- Jn + abs(x[i]-M)
