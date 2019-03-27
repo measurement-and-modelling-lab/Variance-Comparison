@@ -75,6 +75,9 @@
    Cramer and von Mises (1928)
      https://doi.org/10.1080/03461238.1928.10416862
      https://github.com/cran/nortest/blob/master/R/cvm.test.R
+   Desgagne, A., Lafaye de Micheaux, P. and Leblanc, A. (2013)
+     https://doi.org/10.1080/03610926.2011.577548
+     https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat35.cpp
    Doornik and Hansen (1994)
      https://doi.org/10.1111/j.1468-0084.2008.00537.x
      https://github.com/cran/normwn.test/blob/master/R/normality.test1.R
@@ -89,6 +92,11 @@
    Gel and Gastwirth (2008)
      https://doi.org/10.1016/j.econlet.2007.05.022
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat9.cpp
+   Gel, Y.R., Miao, W. and Gastwirth, J.L. (2007)
+     https://doi.org/10.1016/j.csda.2006.08.022
+     https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat33.cpp
+   Glen, A., Leemis, L., and Barr, D. (2001)
+     https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat38.cpp
    Hosking (1990), #1
      https://doi.org/10.1111/j.2517-6161.1990.tb01775.x
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat10.cpp
@@ -106,6 +114,9 @@
      https://github.com/cran/tsoutliers/blob/master/R/JarqueBera-test.R
    Lilliefors' (1967) modified Kolmogorov-Smirnov
      https://github.com/cran/nortest/blob/master/R/lillie.test.R
+   Martinez, J. and Iglewicz, B. (1981)
+     https://doi.org/10.1093/biomet/68.1.331
+     https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat32.cpp
    Pearson (1900)
      https://github.com/cran/nortest/blob/master/R/pearson.test.R
    Rahman, M.M. and Govindarajulu, Z. (1997)
@@ -116,9 +127,15 @@
      https://github.com/cran/mvShapiroTest/blob/master/R/mvshapiro.test.R
    Shapiro and Francia (1973)
      https://github.com/cran/nortest/blob/master/R/sf.test.R
-   Zhang, P (1999) Zhang, P (1999)
+   Spiegelhalter, D.J. (1977)
+     https://doi.org/10.1093/biomet/64.2.415
+     https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat41.cpp
+   Zhang, P (1999), #1 Zhang, P (1999), #1
      https://doi.org/10.1080/02664769922395
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat27.cpp
+   Zhang, P (1999), #2 Zhang, P (1999), #2
+     https://doi.org/10.1080/02664769922395
+     https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat34.cpp
 
 ./shapeMultivariate
    Kendall (1939) coefficient of concordance
