@@ -27,7 +27,13 @@ normalityUnivariate <- function(data) {
     source("./normalityUnivariate/eppspulley1983.R")
     source("./normalityUnivariate/filliben1975.R")
     source("./normalityUnivariate/rahman1997.R")
-    source("./normalityUnivariate/zhang1999.R")
+    source("./normalityUnivariate/zhang1999a.R")
+    source("./normalityUnivariate/zhang1999b.R")
+    source("./normalityUnivariate/desgagnemicheauxleblanc2013.R")
+    source("./normalityUnivariate/gelmiaogastwirth2007.R")
+    source("./normalityUnivariate/glenleemisbarr2001.R")
+    source("./normalityUnivariate/martineziglewicz1981.R")
+    source("./normalityUnivariate/spiegelhalter1977.R")
 
     ## Run each test and assemble as data frame
     output <- rbind(data.frame(),
@@ -56,7 +62,13 @@ normalityUnivariate <- function(data) {
                     eppspulley1983(data),
                     filliben1975(data),
                     rahman1997(data),
-                    zhang1999(data))
+                    zhang1999a(data),
+                    zhang1999b(data),
+                    desgagnemicheauxleblanc2013(data), 
+                    gelmiaogastwirth2007(data), 
+                    glenleemisbarr2001(data), 
+                    martineziglewicz1981(data),
+                    spiegelhalter1977(data))
 
     ## Format output
     output$statistic <- round(output$statistic, 2)

@@ -1,4 +1,4 @@
-zhang1999 <- function(x){
+zhang1999a <- function(x){
   ## Omnibus test of normality using the Q statistic
   ## https://doi.org/10.1080/02664769922395
   ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat27.cpp
@@ -41,7 +41,7 @@ zhang1999 <- function(x){
     
     statQ <- log(q1/q2)
     
-    result <- list(method = "Zhang, P (1999)",
+    result <- list(method = "Zhang, P (1999), #1",
                    statistic = statQ,
                    df = NA,
                    p.value = NA)
@@ -49,7 +49,7 @@ zhang1999 <- function(x){
     return(result)
     
   }else{
-    result <- list(method = "Zhang, P (1999)",
+    result <- list(method = "Zhang, P (1999), #1",
                    statistic = NA,
                    df = NA,
                    p.value = NA)
