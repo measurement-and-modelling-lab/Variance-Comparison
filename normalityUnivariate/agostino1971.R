@@ -18,6 +18,7 @@ agostino1971<- function(x){
   statDa <- sqrt(n)*(D - 0.28209479)/0.02998598
   
   result <- list(method = "D'Agostino (1971)",
+                 doi = "https://doi.org/10.1093/biomet/58.2.341",
                  statistic = statDa,
                  df = NA,
                  p.value = NA)

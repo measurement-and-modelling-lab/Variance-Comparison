@@ -40,6 +40,7 @@ anderson1954 <- function (x){
     }
 
     result <- list(method = "Anderson and Darling (1954)",
+                   doi = "https://doi.org/10.1007/978-3-642-04898-2_118",
                    statistic = A,
                    df = NA,
                    p.value = pval)

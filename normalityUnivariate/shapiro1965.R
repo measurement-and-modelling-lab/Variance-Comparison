@@ -36,6 +36,7 @@ shapiro1965 <- function(X) {
 
 
         results <- list(method = "Shapiro-Wilk (1965)",
+                        doi = "https://doi.org/10.1093/biomet/52.3-4.591",
                         statistic = w1,
                         df = NA,
                         p.value = p.value)

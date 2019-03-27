@@ -14,6 +14,7 @@ jarque1980 <- function(x) {
     PVAL <- 1 - pchisq(STATISTIC, df = 2)
 
     result <- list(method = "Jarque and Bera (1980)",
+                   doi = "https://doi.org/10.1016/0165-1765(80)90024-5",
                    statistic = STATISTIC,
                    df = 2,
                    p.value = PVAL)

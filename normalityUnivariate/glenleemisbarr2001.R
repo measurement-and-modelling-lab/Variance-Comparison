@@ -43,6 +43,7 @@ glenleemisbarr2001 <- function(x){
   }
   stat <- -n - statPS/n
   result <- list(method = "Glen, A., Leemis, L., and Barr, D. (2001)",
+                 doi = "https://www.doi.org/10.1109/24.963129",
                  statistic = stat,
                  df = NA,
                  p.value = NA)

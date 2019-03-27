@@ -50,6 +50,7 @@ zhang1999a <- function(x){
     
   }else{
     result <- list(method = "Zhang, P (1999), #1",
+                   doi = "https://doi.org/10.1080/02664769922395",
                    statistic = NA,
                    df = NA,
                    p.value = NA)

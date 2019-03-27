@@ -55,6 +55,7 @@ cabanacabana1994a <- function(x){
   
     
   result <- list(method = "Cabana-Cabana(1994), #1",
+                 doi = "https://doi.org/10.1214/aos/1176325636",
                  statistic = statTS1,
                  df = NA,
                  p.value = NA)

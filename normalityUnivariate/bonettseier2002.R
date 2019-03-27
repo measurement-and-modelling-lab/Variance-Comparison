@@ -20,6 +20,7 @@ bonettseier2002 <- function(x){
   pval <- 2*pnorm(abs(statTw),lower.tail = FALSE)
   
   result <- list(method = "Bonett-Seier (2002)",
+                 doi = "https://doi.org/10.1016/S0167-9473(02)00074-9",
                  statistic = statTw,
                  df = NA,
                  p.value = pval)

@@ -1,5 +1,6 @@
 pearson1900 <- function (x, n.classes = ceiling(2 * (n^(2/5))), adjust = TRUE) {
     ## Pearson's (1900) chi-square test of normality
+    ## https://doi.org/10.1080/14786440009463897
     ## https://github.com/cran/nortest/blob/master/R/pearson.test.R
 
     x <- x[complete.cases(x)]
@@ -18,6 +19,7 @@ pearson1900 <- function (x, n.classes = ceiling(2 * (n^(2/5))), adjust = TRUE) {
     pvalue <- pchisq(P, n.classes - dfd - 1, lower.tail = FALSE)
     df <- n.classes - 1 - dfd
     result <- list(method = "Pearson (1900)",
+                   doi = "https://doi.org/10.1080/14786440009463897",
                    statistic = P,
                    df = df,
                    p.value = pvalue)

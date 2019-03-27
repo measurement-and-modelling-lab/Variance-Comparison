@@ -21,6 +21,7 @@ shapiro1972 <- function (x) {
     pval <- pnorm(z, lower.tail = FALSE)
 
     result <- list(method = "Shapiro and Francia (1973)",
+                   doi = "http://dx.doi.org/10.1080/01621459.1972.10481232",
                    statistic = W,
                    df = NA,
                    p.value = pval)
