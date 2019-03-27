@@ -1,5 +1,5 @@
 agostino1983 <- function (x, alternative=c("two.sided","less","greater")) {
-    ## Agostino (1983) test of skewness
+    ## D'Agostino (1983) test of skewness
     ## https://doi.org/10.1093/biomet/70.1.227
 
     DNAME <- deparse(substitute(x))
@@ -32,7 +32,7 @@ agostino1983 <- function (x, alternative=c("two.sided","less","greater")) {
         alt <- "data have negative skewness"
     }
 
-    result <- c(method = "d'Agostino (1983) test of skewness",
+    result <- c(method = "D'Agostino (1983) test of skewness",
                 statistic = z,
                 df = NA,
                 p.value = pval)
