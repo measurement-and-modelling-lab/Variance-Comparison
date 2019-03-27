@@ -123,6 +123,9 @@ shinyServer(function(input, output, session) {
             return()
         }
 
+        ## table$statistic <- paste0("<a src=", table$doi, ">", table$statistic, "</a>")
+        ## table$doi <- NULL
+
         source("tablegen.R")
         output <- tableGen(table)
         HTML(output)
