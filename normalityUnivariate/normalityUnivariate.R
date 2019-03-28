@@ -76,7 +76,7 @@ normalityUnivariate <- function(data) {
                     rahman1997(data),
                     shapiro1965(data),
                     shapiro1972(data),
-                    spiegelhalter1977(data)
+                    spiegelhalter1977(data),
                     zhang1999a(data),
                     zhang1999b(data),
                     zhang2005a(data),

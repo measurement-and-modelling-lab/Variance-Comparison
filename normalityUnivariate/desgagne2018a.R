@@ -23,7 +23,7 @@ desgagne2018a <- function(x){
                    doi = "https://doi.org/10.1080/02664763.2017.1415311",
                    statistic = Xapd.stat,
                    df = NA,
-                   p.value = pval)
+                   p.value = p.value)
     
     return(result)
 }
