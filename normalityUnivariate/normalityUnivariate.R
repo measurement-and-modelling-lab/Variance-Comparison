@@ -13,7 +13,6 @@ normalityUnivariate <- function(data) {
     source("./normalityUnivariate/pearson1900.R")
     source("./normalityUnivariate/shapiro1965.R")
     source("./normalityUnivariate/shapiro1972.R")
-    source("./normalityUnivariate/gelgastwirth2008.R")
     source("./normalityUnivariate/hosking1990a.R")
     source("./normalityUnivariate/hosking1990b.R")
     source("./normalityUnivariate/hosking1990c.R")
@@ -48,7 +47,6 @@ normalityUnivariate <- function(data) {
                     pearson1900(data),
                     shapiro1965(data),
                     shapiro1972(data),
-                    gelgastwirth2008(data),
                     hosking1990a(data),
                     hosking1990b(data),
                     hosking1990c(data),

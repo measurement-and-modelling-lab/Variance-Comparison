@@ -1,149 +1,38 @@
-gel2008 <- function (x, option="RJB", crit.values="chisq.approximation", N=0) {
-    ## Gel and Gastwirth's (2008) modified Jarque-Bera test of univariate normality
-    ## https://github.com/cran/lawstat/blob/master/R/rjb.test.R
+gelgastwirth2008 <- function(x){
+  ## The Gel-Gastwirth2008 test for normality
+  ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat9.cpp
 
-    option<-match.arg(option) 
-    crit.values=match.arg(crit.values)
-
-
-    if (NCOL(x) > 1){stop("x is not a vector or univariate time series")}
-
-    if (any(is.na(x))){stop("NAs in x")}
-
-    if ((crit.values=="empirical")&(N==0)) 
-    {stop("number of Monte Carlo simulations N should be provided for the empirical critical values")}
-
-    DNAME <- deparse(substitute(x))
-
-
-    ## Calculate the first 4 central moments ###
-    n <- length(x)
-    m1 <- sum(x)/n
-    m2 <- sum((x - m1)^2)/n
-    m3 <- sum((x - m1)^3)/n
-    m4 <- sum((x - m1)^4)/n
-
-
-    ## User can choose the Standard Jarque Bera Test or Robust Jarque Bera Test ###
-    ## Robust Jarque Bera Test is default ###
-    if(option=="JB")
-    {
-        b1 <- (m3/m2^(3/2))^2;
-        b2 <- (m4/m2^2);
-        METHOD <- "Standard Jarque Bera Test"
-        statistic<-n * b1/6 + n * (b2 - 3)^2/24
-    }
-
-    else
-    {
-        option="RJB";
-        J<-sqrt(pi/2)*mean(abs(x-median(x)));
-        J2<-J^2;
-        b1 <- (m3/(J2)^(3/2))^2;
-        b2 <- (m4/(J2)^2);
-        vk<-64/n;
-        METHOD <- "Robust Jarque Bera Test"
-        vs<-6/n
-        ek<-3
-        statistic <- b1/vs + (b2 - ek)^2/vk
-    }
-
-    
-    if(crit.values=="empirical")
-    {
-        if(option=="JB")
-        {
-#### computes empirical critical values for the JB statistic####
-
-            jb<-double(N)
-
-            for (k in 1:N)
-            {
-                e <- rnorm(length(x), mean=0, sd = sqrt(1))  
-                m1 <- sum(e)/n
-                m2 <- sum((e - m1)^2)/n
-                m3 <- sum((e - m1)^3)/n
-                m4 <- sum((e - m1)^4)/n
-                b1 <- (m3/m2^(3/2))^2;
-                b2 <- (m4/m2^2);
-                vk<-24/n;
-                vs<-6/n
-                ek<-3
-                jb[k]<-b1/vs + (b2 - ek)^2/vk
-            }
-            y<-sort(jb)
-            if (statistic>=max(y)) {p.value=0}
-            else if (statistic<=min(y)) {p.value=1}
-            else
-            {
-                
-                bn<-which(y==min(y[I(y>=statistic)]))
-                an<-which(y==max(y[I(y<statistic)]))
-                a<-max(y[I(y<statistic)])
-                b<-min(y[I(y>=statistic)])
-                pa<-(an - 1) / (N - 1)
-                pb<-(bn - 1) / (N - 1)
-                alpha<-(statistic-a)/(b-a)  
-                p.value=1-alpha*pb-(1-alpha)*pa
-            }
-        }
-
-
-        else
-        {
-#### computes empirical critical values for the RJB statistic####
-
-            rjb<-double(N)
-
-            for (k in 1:N)
-            {
-                e <- rnorm(length(x), mean=0, sd = sqrt(1))  
-                J<-sqrt(pi/2)*mean(abs(e-median(e)));
-                J2<-J^2;
-                m1 <- sum(e)/n
-                m2 <- sum((e - m1)^2)/n
-                m3 <- sum((e - m1)^3)/n
-                m4 <- sum((e - m1)^4)/n
-                b1 <- (m3/(J2)^(3/2))^2;
-                b2 <- (m4/(J2)^2);
-                vk<-64/n;
-                vs<-6/n
-                ek<-3
-                rjb[k]<-b1/vs + (b2 - ek)^2/vk
-            }
-            y<-sort(rjb)
-            if (statistic>=max(y)) {p.value=0}
-            else if (statistic<=min(y)) {p.value=1}
-            else
-            {
-                bn<-which(y==min(y[I(y>=statistic)]))
-                an<-which(y==max(y[I(y<statistic)]))
-                a<-max(y[I(y<statistic)])
-                b<-min(y[I(y>=statistic)])
-                pa<-(an - 1) / (N - 1)
-                pb<-(bn - 1) / (N - 1)
-                alpha<-(statistic-a)/(b-a)  
-                p.value=1-alpha*pb-(1-alpha)*pa
-            }
-        }
-
-    }
-
-    else {p.value <- 1 - pchisq(statistic, df = 2)}
-    if(option=="JB"){METHOD <- "Jarque Bera Test"}
-    else {METHOD <- "Robust Jarque Bera Test"}
-
-    ## Display Output ###
-    STATISTIC=statistic
-    names(STATISTIC) <- "X-squared"
-    PARAMETER <- 2
-    names(PARAMETER) <- "df"
-
-    result <- list(method = "Gel-Gastwirth (2008) robust Jarque-Bera",
-                   doi = "https://doi.org/10.1016/j.econlet.2007.05.022",
-                   statistic = STATISTIC,
-                   df = PARAMETER,
-                   p.value = p.value)
-    
-    return(result)
+  meanX <-  mean(x)
+  n <- length(x)
+  m3<-0
+  m4<-0
+  Jn <- 0
+  for(i in 1:n){
+    m3<- m3 + (x[i]-meanX)^3
+    m4<- m4 + (x[i]-meanX)^4
+  }
+  m3<- m3/n
+  m4 <- m4/n
+  x <- sort(x)
+  if (n%%2 == 0) {
+    M<-(x[n/2+1]+x[n/2])/2
+  }
+  else{
+    M<- x[n/2+1]
+  }
+  for (i in 1:n){
+    Jn <- Jn + abs(x[i]-M)
+  }
+  Jn <- sqrt(pi/2) * Jn/n
+  print(m3)
+  stat <- n*((m3/(Jn^3))^2)/6+n*((m4/(Jn^4)-3)^2)/64
+  PVAL <- 1 - pchisq(stat, 2)
+  
+  result <- list(method = "Gel-Gastwirth (2008)",
+                 doi = "https://doi.org/10.1016/j.econlet.2007.05.022",
+                 statistic = stat,
+                 df = 2,
+                 p.value = PVAL)
+  return(result)
+  
 }
