@@ -12,7 +12,7 @@ jarque1980 <- function(x) {
     STATISTIC <- n * b1 / 6 + n * (b2 - 3) ^ 2 / 24
     PVAL <- 1 - pchisq(STATISTIC, df = 2)
 
-    result <- list(method = "Jarque and Bera (1980)",
+    result <- list(method = "Jarque-Bera (1980)",
                    doi = "https://doi.org/10.1016/0165-1765(80)90024-5",
                    statistic = STATISTIC,
                    df = 2,

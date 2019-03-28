@@ -36,7 +36,7 @@ cramer1928 <- function (x) {
       pval <- 7.37e-10
     }
 
-    result <- list(method = "Cramer and von Mises (1928)",
+    result <- list(method = "Cramer-Mises (1928)",
                    doi = "https://doi.org/10.1080/03461238.1928.10416862",
                    statistic = W,
                    df = NA,

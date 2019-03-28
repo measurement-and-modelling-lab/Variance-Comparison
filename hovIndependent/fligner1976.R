@@ -45,7 +45,7 @@ fligner1976 <- function(x, g, ...) {
     df <- k - 1
     p.value <- pchisq(statistic, df, lower.tail = FALSE)
 
-    result <- list(method = "Fligner and Killeen (1976)",
+    result <- list(method = "Fligner-Killeen (1976)",
                    doi = "https://doi.org/10.1080/01621459.1976.10481517",
                    statistic = statistic,
                    df = df,

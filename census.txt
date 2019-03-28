@@ -16,7 +16,7 @@
    Bartlett (1937)
      https://doi.org/10.1098/rspa.1937.0109
      https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/bartlett.test.R
-   Fligner and Killeen (1976)
+   Fligner-Killeen (1976)
      https://doi.org/10.1080/01621459.1976.10481517
      https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/fligner.test.R
    Levene (1960)
@@ -49,12 +49,12 @@
    D'Agostino (1971)
      https://doi.org/10.1093/biomet/58.2.341
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat24.cpp
-   D'Agostino and Pearson (1973)
+   D'Agostino-Pearson (1973)
      https://doi.org/10.1093/biomet/60.3.613
      https://github.com/cran/moments/blob/master/R/agostino.test.R
    D'Agostino (1983) test of skewness
      https://doi.org/10.1093/biomet/70.1.227
-   Anderson and Darling (1954)
+   Anderson-Darling (1954)
      https://doi.org/10.1007/978-3-642-04898-2_118
      https://github.com/cran/nortest/blob/master/R/ad.test.R
    Bonett-Seier (2002)
@@ -74,31 +74,31 @@
    Cabana-Cabana(1994), #2
      https://doi.org/10.1214/aos/1176325636
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat20.cpp
-   Cramer and von Mises (1928)
+   Cramer-Mises (1928)
      https://doi.org/10.1080/03461238.1928.10416862
      https://github.com/cran/nortest/blob/master/R/cvm.test.R
-   Desgagne, A., Lafaye de Micheaux, P. and Leblanc, A. (2013)
+   Desgagne-Micheaux-Leblanc (2013)
      https://doi.org/10.1080/03610926.2011.577548
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat35.cpp
-   Doornik and Hansen (1994)
+   Doornik-Hansen (1994)
      https://doi.org/10.1111/j.1468-0084.2008.00537.x
      https://github.com/cran/normwn.test/blob/master/R/normality.test1.R
-   Epps, T.W. and Pulley, L.B. (1983)
+   Epps-Pulley (1983)
      https://doi.org/10.1093/biomet/70.3.723
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat31.cpp
-   Filliben, J.J. (1975)
+   Filliben (1975)
      http://doi.org/10.1080/00401706.1975.10489279
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat25.cpp
    Gel-Gastwirth (2008) robust Jarque-Bera
      https://doi.org/10.1016/j.econlet.2007.05.022
      https://github.com/cran/lawstat/blob/master/R/rjb.test.R
-   Gel and Gastwirth (2008)
+   Gel-Gastwirth (2008)
      https://doi.org/10.1016/j.econlet.2007.05.022
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat9.cpp
-   Gel, Y.R., Miao, W. and Gastwirth, J.L. (2007)
+   Gel-Miao-Gastwirth (2007)
      https://doi.org/10.1016/j.csda.2006.08.022
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat33.cpp
-   Glen, A., Leemis, L., and Barr, D. (2001)
+   Glen-Leemis-Barr (2001)
      https://www.doi.org/10.1109/24.963129
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat38.cpp
    Hosking (1990), #1
@@ -113,34 +113,34 @@
    Hosking (1990), #4
      https://doi.org/10.1111/j.2517-6161.1990.tb01775.x
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat13.cpp
-   Jarque and Bera (1980)
+   Jarque-Bera (1980)
      https://doi.org/10.1016/0165-1765(80)90024-5
      https://github.com/cran/tsoutliers/blob/master/R/JarqueBera-test.R
    Lilliefors' (1967) modified Kolmogorov-Smirnov
      http://dx.doi.org/10.2307/2283970
      https://github.com/cran/nortest/blob/master/R/lillie.test.R
-   Martinez, J. and Iglewicz, B. (1981)
+   Martinez-Iglewicz (1981)
      https://doi.org/10.1093/biomet/68.1.331
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat32.cpp
    Pearson (1900)
      https://doi.org/10.1080/14786440009463897
      https://github.com/cran/nortest/blob/master/R/pearson.test.R
-   Rahman, M.M. and Govindarajulu, Z. (1997)
+   Rahman-Govindarajulu (1997)
      https://doi.org/10.1080/02664769723828
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat23.cpp
    Shapiro-Wilk (1965)
      https://doi.org/10.1093/biomet/52.3-4.591
      https://github.com/cran/mvShapiroTest/blob/master/R/mvshapiro.test.R
-   Shapiro and Francia (1972)
+   Shapiro-Francia (1972)
      http://dx.doi.org/10.1080/01621459.1972.10481232
      https://github.com/cran/nortest/blob/master/R/sf.test.R
-   Spiegelhalter, D.J. (1977)
+   Spiegelhalter (1977)
      https://doi.org/10.1093/biomet/64.2.415
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat41.cpp
-   Zhang, P (1999), #1
+   Zhang (1999), #1
      https://doi.org/10.1080/02664769922395
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat27.cpp
-   Zhang, P (1999), #2
+   Zhang (1999), #2
      https://doi.org/10.1080/02664769922395
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat34.cpp
 

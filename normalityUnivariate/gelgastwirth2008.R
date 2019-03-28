@@ -28,7 +28,7 @@ gelgastwirth2008 <- function(x){
   stat <- n*((m3/(Jn^3))^2)/6+n*((m4/(Jn^4)-3)^2)/64
   PVAL <- 1 - pchisq(stat, 2)
   
-  result <- list(method = "Gel and Gastwirth (2008)",
+  result <- list(method = "Gel-Gastwirth (2008)",
                  doi = "https://doi.org/10.1016/j.econlet.2007.05.022",
                  statistic = stat,
                  df = 2,

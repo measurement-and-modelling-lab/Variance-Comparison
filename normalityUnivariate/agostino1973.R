@@ -28,7 +28,7 @@ agostino1973 <- function(x) {
     pomni <- 1 - pchisq(omni, 2)
     res <- list(stat = omni, p.value = pomni) 
 
-    result <- list(method = "D'Agostino and Pearson (1973)",
+    result <- list(method = "D'Agostino-Pearson (1973)",
                    doi = "https://doi.org/10.1093/biomet/60.3.613",
                    statistic = omni,
                    df = 2,

@@ -28,7 +28,7 @@ eppspulley1983 <- function(x){
   statTEP <- term1 - term2 + (1+2*alpha^(-2))^(-0.5)
   statTEP = -log(n*abs(statTEP))
   
-  result <- list(method = "Epps, T.W. and Pulley, L.B. (1983)",
+  result <- list(method = "Epps-Pulley (1983)",
                  doi = "https://doi.org/10.1093/biomet/70.3.723",
                  statistic = statTEP,
                  df = NA,

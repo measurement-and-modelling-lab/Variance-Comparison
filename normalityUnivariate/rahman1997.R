@@ -44,7 +44,7 @@ rahman1997 <- function(x){
   statWRG <- statWRG^2/aux6
   
   
-  result <- list(method = "Rahman, M.M. and Govindarajulu, Z. (1997)",
+  result <- list(method = "Rahman-Govindarajulu (1997)",
                  doi = "https://doi.org/10.1080/02664769723828",
                  statistic = statWRG,
                  df = NA,

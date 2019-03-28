@@ -38,7 +38,7 @@ anderson1954 <- function (x){
         pval <- 3.7e-24
     }
 
-    result <- list(method = "Anderson and Darling (1954)",
+    result <- list(method = "Anderson-Darling (1954)",
                    doi = "https://doi.org/10.1007/978-3-642-04898-2_118",
                    statistic = A,
                    df = NA,

@@ -42,7 +42,7 @@ martineziglewicz1981 <- function(x){
   statIn <- (term3/(n-1)) / Sb2
   
   
-  result <- list(method = "Martinez, J. and Iglewicz, B. (1981)",
+  result <- list(method = "Martinez-Iglewicz (1981)",
                  doi = "https://doi.org/10.1093/biomet/68.1.331",
                  statistic = statIn,
                  df = NA,

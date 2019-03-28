@@ -41,7 +41,7 @@ glenleemisbarr2001 <- function(x){
     statPS <- statPS + (2 * n + 1 - 2 * (i-1)) * log(Phiz[i - 1]) + (2 * (i-1) - 1) * log(1 - Phiz[i - 1]);
   }
   stat <- -n - statPS/n
-  result <- list(method = "Glen, A., Leemis, L., and Barr, D. (2001)",
+  result <- list(method = "Glen-Leemis-Barr (2001)",
                  doi = "https://www.doi.org/10.1109/24.963129",
                  statistic = stat,
                  df = NA,

@@ -19,7 +19,7 @@ shapiro1972 <- function (x) {
     z <- (log(1 - W) - mu)/sig
     pval <- pnorm(z, lower.tail = FALSE)
 
-    result <- list(method = "Shapiro and Francia (1972)",
+    result <- list(method = "Shapiro-Francia (1972)",
                    doi = "http://dx.doi.org/10.1080/01621459.1972.10481232",
                    statistic = W,
                    df = NA,

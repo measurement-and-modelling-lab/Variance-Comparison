@@ -37,7 +37,7 @@ doornik1994 <- function(x) {
     stat <- z1 ^ 2 + z2 ^ 2
     pval <- 1 - pchisq(stat, 2)
 
-    result <-  list(method = "Doornik and Hansen (1994)",
+    result <-  list(method = "Doornik-Hansen (1994)",
                     doi = "https://doi.org/10.1111/j.1468-0084.2008.00537.x",
                     statistic = stat,
                     df = 2,

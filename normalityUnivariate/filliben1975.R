@@ -25,7 +25,7 @@ filliben1975 <- function(x){
   }
   statr <- term1 / (sqrt(term2*(n-1)*varX))
   
-  result <- list(method = "Filliben, J.J. (1975)",
+  result <- list(method = "Filliben (1975)",
                  doi = "http://doi.org/10.1080/00401706.1975.10489279",
                  statistic = statr,
                  df = NA,
