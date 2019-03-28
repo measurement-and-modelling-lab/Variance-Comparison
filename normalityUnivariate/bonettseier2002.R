@@ -1,17 +1,14 @@
-## The Bonett-Seier(2002) test for normality
-## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat17.cpp
-
 bonettseier2002 <- function(x){
+  ## The Bonett-Seier(2002) test for normality
+  ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat17.cpp
+
   n <- length(x)
   m2 <- term <- 0
   meanX <- mean(x)
   
-  for(i in 1:n){
-    m2 <- m2 + (x[i]-meanX)^2
-    term <- term + abs(x[i]-meanX)
-  }
-  m2 <- m2/n
-  term <- term/n
+  dev <- scale(x, scale=FALSE)
+  m2 <- sum(dev^2) / n
+  term <- sum(abs(dev)) / n
   
   omega <- 13.29*(log(sqrt(m2))-log(term))
   statTw <- sqrt(n+2)*(omega-3)/3.54

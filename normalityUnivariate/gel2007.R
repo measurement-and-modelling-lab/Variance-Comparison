@@ -8,9 +8,7 @@ gel2007 <- function(x){
    meanX <- mean(x)
    M_PI <- 3.14159265358979323846264338327950288
    
-   for (i in 1:n) {
-     varX <- varX + (x[i]-meanX)^2
-   }
+   varX <-sum(scale(x, scale=FALSE)^2)
    
    varX <- varX/n
    sdX <- sqrt(varX)
@@ -22,9 +20,7 @@ gel2007 <- function(x){
      M <- x[n/2+1]
    }
    
-   for (i in 1:n){
-     Jn <- Jn + abs(x[i]-M)
-   }
+   Jn <- sum(abs(x-M))
    
    Jn <- sqrt(M_PI/2)* (Jn/n)
    statRsJ <- sdX/Jn

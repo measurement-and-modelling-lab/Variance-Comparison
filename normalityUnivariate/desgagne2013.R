@@ -7,21 +7,15 @@ desgagne2013 <- function(x){
   y <- matrix(0,n,0)
   
   meanX <- mean(x)
-  for (i in 1:n) {
-    varpopX <- varpopX + (x[i])^2
-  }
+  varpopX <- sum(x^2)
   
   varpopX <- varpopX/n-meanX^2
   sdX <- sqrt(varpopX)
-  for (i in 1:n) {
-    y[i] <- (x[i]-meanX)/sdX
-  }
-  
-  for (i in 1:n) {
-    r1 <- r1 + y[i]^2 * log(abs(y[i]))
-    r2 <- r2 + log(1 + abs(y[i]))
-    r3 <- r3 + log( log( 2.71828182846 + abs(y[i])) )
-  }
+  y <- (x - meanX)/sdX
+
+  r1 <- sum(y^2 * log(abs(y)))
+  r2 <- sum(log(1 + abs(y)))
+  r3 <- sum(log(log( 2.71828182846 + abs(y))))
   
   r1 <- 0.18240929 - 0.5 * r1 / n
   r2 <- 0.5348223 - r2 / n
@@ -100,7 +94,4 @@ desgagne2013 <- function(x){
                  p.value = pval)
     
   return(result)
-    
- 
-  
 }

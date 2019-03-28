@@ -24,9 +24,7 @@ glen2001 <- function(x){
     muhat <- x[n/2+1]
   }
   
-  for (i in 1:n) {
-    tmp <- tmp + abs(x[i] - muhat)
-  }
+  tmp <- sum(abs(x - muhat))
   bhat <- tmp/n
   for (i in 1:n) {
     Phiz[i] <- plaplace((x[i] - muhat) / bhat)

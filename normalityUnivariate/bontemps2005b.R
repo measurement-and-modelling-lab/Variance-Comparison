@@ -6,17 +6,13 @@ bontemps2005b <- function(x) {
     varX <- statBM34 <- tmp3 <- tmp4 <- tmp5 <- tmp6 <- 0 
     z<- matrix(0,n,0)
     meanX <- mean(x)
-    for (i in 1:n){
-        z[i] <- (x[i] - meanX)/sd(x)
-    }
+    z <- scale(x)
+
+    tmp3 <- sum((z^3 - 3 * z) / sqrt(6))
+    tmp4 <- sum(((z^4 - 6 * z^2) + 3) / (2 * sqrt(6)))
+    tmp5 <- sum((z^5 - 10 * z^3 + 15 * z) / (2 * sqrt(30)))
+    tmp6 <- sum((z^6 - 15 * z^4 + 45 * z^2 - 15) / (12 * sqrt(5)))
     
-    for (i in 1:n){
-        tmp3 <- tmp3 + (z[i]^3 - 3*z[i])/sqrt(6)
-        tmp4 <- tmp4 + ((z[i]^4 - 6*z[i]^2)+3)/(2 * sqrt(6))
-        tmp5 <- tmp5 + (z[i]^5 - 10*z[i]^3+15*z[i])/(2* sqrt(30))
-        tmp6 <- tmp6 + (z[i]^6 - 15*z[i]^4 + 45*z[i]^2 - 15)/(12*sqrt(5))
-        
-    }
     statBM36 <- (tmp3^2 + tmp4^2+tmp5^2 + tmp6^2)/n
     PVAL <- 1 - pchisq(statBM36, 2)
     

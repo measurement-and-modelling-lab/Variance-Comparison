@@ -8,10 +8,7 @@ epps1983 <- function(x){
   xbar <- mean(x)
   alpha <- 1
   
-  for(i in 1:n){
-    S2 <- S2 + (x[i]-xbar)^2
-  }
-  S2 <- S2/n
+  S2 <- mean(scale(x, scale=FALSE)^2)
   
   for(i in 1:n ){
     for(j in 1:n){
@@ -20,9 +17,7 @@ epps1983 <- function(x){
   }
   term1 <- term1/n^2
   
-  for(i in 1:n){
-    term2 <- term2 + exp((-0.5*(x[i]-xbar)^2)/(S2*(1+alpha^2)))
-  }
+  term2 <- sum(exp((-0.5*(x-xbar)^2)/(S2*(1+alpha^2))))
   term2 <- 2*(1+alpha^(-2))^(-.5) * term2 / n
   
   statTEP <- term1 - term2 + (1+2*alpha^(-2))^(-0.5)
