@@ -1,4 +1,4 @@
-bontempsmeddahi2005b <- function(x) {
+bontemps2005b <- function(x) {
     ## The 2nd Bontemps-Meddahi(2005) test for normality
     ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat15.cpp
 

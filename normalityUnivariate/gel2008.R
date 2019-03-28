@@ -1,4 +1,4 @@
-gelgastwirth2008 <- function(x){
+gel2008 <- function(x){
   ## The Gel-Gastwirth2008 test for normality
   ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat9.cpp
 

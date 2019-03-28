@@ -1,4 +1,4 @@
-martineziglewicz1981 <- function(x){
+martinez1981 <- function(x){
   ## A test for departure from normality based on a biweight estimator of scale
   ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat32.cpp
   ## bilateral test that rejects H0 only for large values of the test statistic
