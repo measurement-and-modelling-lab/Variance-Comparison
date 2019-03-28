@@ -42,18 +42,13 @@ zhang1999b <- function(x){
     Qstar <- log(q1star/q2star)
     
     result <- list(method = "Zhang, P (1999), #2",
+                   doi = "https://doi.org/10.1080/02664769922395",
                    statistic = Qstar,
                    df = NA,
                    p.value = NA)
     
     return(result)
     
-  }else{
-    result <- list(method = "Zhang, P (1999), #2",
-                   statistic = NA,
-                   df = NA,
-                   p.value = NA)
-    return(result)
   }
   
 }

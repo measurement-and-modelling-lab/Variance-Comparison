@@ -22,6 +22,7 @@ bontempsmeddahi2005b <- function(x) {
     PVAL <- 1 - pchisq(statBM36, 2)
     
     result <- list(method = "Bontemps-Meddahi (2005), #2",
+                   doi = "https://doi.org/10.1016/j.jeconom.2004.02.014",
                    statistic = statBM36,
                    df = 2,
                    p.value = PVAL)

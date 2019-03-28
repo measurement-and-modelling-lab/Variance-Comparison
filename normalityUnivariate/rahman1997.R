@@ -46,6 +46,7 @@ rahman1997 <- function(x){
   
   
   result <- list(method = "Rahman, M.M. and Govindarajulu, Z. (1997)",
+                 doi = "https://doi.org/10.1080/02664769723828",
                  statistic = statWRG,
                  df = NA,
                  p.value = NA)

@@ -141,6 +141,7 @@ gel2008 <- function (x, option="RJB", crit.values="chisq.approximation", N=0) {
     names(PARAMETER) <- "df"
 
     result <- list(method = "Gel-Gastwirth (2008) robust Jarque-Bera",
+                   doi = "https://doi.org/10.1016/j.econlet.2007.05.022",
                    statistic = STATISTIC,
                    df = PARAMETER,
                    p.value = p.value)

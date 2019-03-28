@@ -13,6 +13,7 @@ bonett2002 <-function (x) {
             pval <- 2 - pval
 
     result <- list(method = "Bonett-Seier (2002)",
+                   doi = "https://doi.org/10.1016/S0167-9473(02)00074-9",
                    statistic = z,
                    df = NA,
                    p.value = pval)

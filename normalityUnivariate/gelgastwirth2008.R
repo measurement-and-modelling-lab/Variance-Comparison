@@ -30,6 +30,7 @@ gelgastwirth2008 <- function(x){
   PVAL <- 1 - pchisq(stat, 2)
   
   result <- list(method = "Gel and Gastwirth (2008)",
+                 doi = "https://doi.org/10.1016/j.econlet.2007.05.022",
                  statistic = stat,
                  df = 2,
                  p.value = PVAL)

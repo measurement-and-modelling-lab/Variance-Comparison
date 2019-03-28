@@ -30,6 +30,7 @@ agostino1973 <- function(x) {
     res <- list(stat = omni, p.value = pomni) 
 
     result <- list(method = "D'Agostino and Pearson (1973)",
+                   doi = "https://doi.org/10.1093/biomet/60.3.613",
                    statistic = omni,
                    df = 2,
                    p.value = pomni)

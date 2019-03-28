@@ -44,6 +44,7 @@ martineziglewicz1981 <- function(x){
   
   
   result <- list(method = "Martinez, J. and Iglewicz, B. (1981)",
+                 doi = "https://doi.org/10.1093/biomet/68.1.331",
                  statistic = statIn,
                  df = NA,
                  p.value = NA)

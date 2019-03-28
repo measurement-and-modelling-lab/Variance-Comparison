@@ -98,6 +98,8 @@ shinyServer(function(input, output, session) {
             if (univariate & one_group) {
                 source("./normalityUnivariate/normalityUnivariate.R")
                 table <- normalityUnivariate(values)
+                table$method <- paste0("<a href=", table$doi, ">", table$method, "</a>")
+                table$doi <- NULL
             } else if (!univariate & one_group) {
                 source("./normalityMultivariate/normalityMultivariate.R")
                 table <- normalityMultivariate(values)
@@ -122,9 +124,6 @@ shinyServer(function(input, output, session) {
         } else {
             return()
         }
-
-        ## table$statistic <- paste0("<a src=", table$doi, ">", table$statistic, "</a>")
-        ## table$doi <- NULL
 
         source("tablegen.R")
         output <- tableGen(table)

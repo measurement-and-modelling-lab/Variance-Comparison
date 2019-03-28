@@ -55,6 +55,7 @@ hosking1990a <- function(x) {
     PVAL <- 1 - pchisq(statTLmom, 2)
     
     result <- list(method = "Hosking (1990), #1",
+                   doi = "https://doi.org/10.1111/j.2517-6161.1990.tb01775.x",
                    statistic = statTLmom,
                    df = 2,
                    p.value = PVAL)

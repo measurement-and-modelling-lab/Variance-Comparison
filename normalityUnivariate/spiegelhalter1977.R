@@ -33,6 +33,7 @@ spiegelhalter1977 <- function(x){
   
           
   result <- list(method = "Spiegelhalter, D.J. (1977)",
+                 doi = "https://doi.org/10.1093/biomet/64.2.415",
                  statistic = statSp,
                  df = NA,
                  p.value = NA)

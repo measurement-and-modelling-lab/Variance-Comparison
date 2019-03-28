@@ -1,4 +1,4 @@
-"lilliefors1967" <- function (x)  {
+lilliefors1967 <- function (x)  {
     ## Lilliefors (1967) modified Kolmogorov-Smirnov
     ## http://dx.doi.org/10.2307/2283970
     ## https://github.com/cran/nortest/blob/master/R/lillie.test.R
@@ -58,6 +58,7 @@
     }
 
     result <- list(method = "Lilliefors' (1967) modified Kolmogorov-Smirnov",
+                   doi = "http://dx.doi.org/10.2307/2283970",
                    statistic = K,
                    df = NA,
                    p.value = pvalue)

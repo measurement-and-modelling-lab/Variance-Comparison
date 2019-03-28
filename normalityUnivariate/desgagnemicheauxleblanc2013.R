@@ -95,9 +95,10 @@ desgagnemicheauxleblanc2013 <- function(x){
   
   pval <- pvalCalc35(n,Rn)
   result <- list(method = "Desgagne, A., Lafaye de Micheaux, P. and Leblanc, A. (2013)",
-                   statistic = Rn,
-                   df = NA,
-                   p.value = pval)
+                 doi = "https://doi.org/10.1080/03610926.2011.577548",
+                 statistic = Rn,
+                 df = NA,
+                 p.value = pval)
     
   return(result)
     

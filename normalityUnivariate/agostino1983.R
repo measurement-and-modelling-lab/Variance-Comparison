@@ -33,6 +33,7 @@ agostino1983 <- function (x, alternative=c("two.sided","less","greater")) {
     }
 
     result <- c(method = "D'Agostino (1983) test of skewness",
+                doi = "https://doi.org/10.1093/biomet/70.1.227",
                 statistic = z,
                 df = NA,
                 p.value = pval)

@@ -34,6 +34,7 @@ gelmiaogastwirth2007 <- function(x){
      tmp <- 1.0 - tmp
    }
   result <- list(method = "Gel, Y.R., Miao, W. and Gastwirth, J.L. (2007)",
+                 doi = "https://doi.org/10.1016/j.csda.2006.08.022",
                  statistic = statRsJ,
                  df = NA,
                  p.value = tmp)
