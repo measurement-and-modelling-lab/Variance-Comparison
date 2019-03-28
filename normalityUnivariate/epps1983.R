@@ -1,4 +1,4 @@
-eppspulley1983 <- function(x){
+epps1983 <- function(x){
   ##A test of normality based on empirical characteristic function  
   ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat31.cpp
   
