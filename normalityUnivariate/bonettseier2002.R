@@ -1,5 +1,4 @@
 ## The Bonett-Seier(2002) test for normality
-## https://doi.org/10.1016/S0167-9473(02)00074-9
 ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat17.cpp
 
 bonettseier2002 <- function(x){

@@ -1,6 +1,5 @@
 hosking1990b <- function(x){
     ## The 2nd Hosking test for normality(1990)
-    ## https://doi.org/10.1111/j.2517-6161.1990.tb01775.x
     ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat11.cpp
     
     pstarmod1 <- function(r,n,i){

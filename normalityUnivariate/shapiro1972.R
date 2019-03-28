@@ -1,6 +1,5 @@
 shapiro1972 <- function (x) {
     ## The Shapiro and Francia's (1972) test of normality
-    ## http://dx.doi.org/10.1080/01621459.1972.10481232
     ## https://github.com/cran/nortest/blob/master/R/sf.test.R
 
     x <- sort(x[complete.cases(x)])
@@ -20,12 +19,8 @@ shapiro1972 <- function (x) {
     z <- (log(1 - W) - mu)/sig
     pval <- pnorm(z, lower.tail = FALSE)
 
-<<<<<<< HEAD
     result <- list(method = "Shapiro and Francia (1972)",
-=======
-    result <- list(method = "Shapiro and Francia (1973)",
                    doi = "http://dx.doi.org/10.1080/01621459.1972.10481232",
->>>>>>> aaa66b101f29292b8b1f424fa58d0dbf27c278fa
                    statistic = W,
                    df = NA,
                    p.value = pval)

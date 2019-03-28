@@ -1,6 +1,5 @@
 bonett2002 <-function (x) {
     ## Bonett-Seier (2002)
-    ## https://doi.org/10.1016/S0167-9473(02)00074-9
     
     x <- sort(x)
     n <- length(x)

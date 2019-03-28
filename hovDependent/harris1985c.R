@@ -1,6 +1,5 @@
 harris1985c <- function(object, type = "scale"){
     ## Harris (1985)
-    ## https://doi.org/10.2307/2336339
     ## https://github.com/cran/MVT/blob/master/R/homogeneity.test.R 
     
     source("./hovDependent/functions/fisherinfo.R")
@@ -100,6 +99,7 @@ harris1985c <- function(object, type = "scale"){
     pval <- 1 - pchisq(stat, df = df)
     
     result <- list(method = "Harris (1985) score test",
+                   doi = "https://doi.org/10.2307/2336339",
                    statistic = stat,
                    df = df,
                    p.value = pval)

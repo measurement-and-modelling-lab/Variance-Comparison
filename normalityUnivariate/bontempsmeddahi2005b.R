@@ -1,6 +1,5 @@
 bontempsmeddahi2005b <- function(x) {
     ## The 2nd Bontemps-Meddahi(2005) test for normality
-    ## https://doi.org/10.1016/j.jeconom.2004.02.014
     ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat15.cpp
 
     n<-length(x)

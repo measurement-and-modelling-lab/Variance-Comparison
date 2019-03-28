@@ -3,7 +3,6 @@ source("./normalityUnivariate/shapiro1972.R")
 
 royston1982 <- function (data, tol = 1e-25) {
     ## Royston's (1982) test of multivariate normality
-    ## https://doi.org/10.2307/2347973
     ## https://github.com/selcukorkmaz/MVN/blob/master/R/mvn.R
     
     if (dim(data)[2] < 2 || is.null(dim(data))) {
@@ -91,6 +90,7 @@ royston1982 <- function (data, tol = 1e-25) {
     pValue <- pchisq(RH, edf, lower.tail = FALSE)
 
     result <- list(method = "Royston (1982)",
+                   doi = "https://doi.org/10.2307/2347973",
                    statistic = RH,
                    df = NA,
                    p.value = pValue)

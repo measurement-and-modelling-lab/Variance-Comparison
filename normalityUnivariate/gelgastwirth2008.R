@@ -1,8 +1,7 @@
-## The Gel-Gastwirth2008 test for normality
-## https://doi.org/10.1016/j.econlet.2007.05.022
-## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat9.cpp
-
 gelgastwirth2008 <- function(x){
+  ## The Gel-Gastwirth2008 test for normality
+  ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat9.cpp
+
   meanX <-  mean(x)
   n <- length(x)
   m3<-0

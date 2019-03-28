@@ -1,6 +1,5 @@
 agostino1971<- function(x){
   ## D'Agostino, R.B. (1971), An omnibus test of normality for moderate and large size samples
-  ## https://doi.org/10.1093/biomet/58.2.341
   ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat24.cpp
   
   n <- length(x)

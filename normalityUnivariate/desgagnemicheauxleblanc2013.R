@@ -1,6 +1,5 @@
 desgagnemicheauxleblanc2013 <- function(x){
   ## Test of Normality Against Generalized Exponential Power Alternatives
-  ## https://doi.org/10.1080/03610926.2011.577548
   ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat35.cpp
   ## bilateral test that rejects H0 only for large values of the test statistic
   n <- length(x)

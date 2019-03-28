@@ -1,6 +1,5 @@
 shapiro1965 <- function(X) {
     ## Shapiro and Wilk (1965) test of univariate normality
-    ## https://doi.org/10.1093/biomet/52.3-4.591
     ## https://github.com/cran/mvShapiroTest/blob/master/R/mvshapiro.test.R
     
     dname <- deparse(substitute(X))

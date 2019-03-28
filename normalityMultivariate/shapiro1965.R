@@ -1,6 +1,5 @@
 shapiro1965 <- function(X) {
     ## Shapiro (1965)'s test of multivariate normality
-    ## https://doi.org/10.2307/2333709
     ## https://github.com/cran/mvShapiroTest/blob/master/R/mvshapiro.test.R
     
     X <- as.matrix(X)
@@ -37,6 +36,7 @@ shapiro1965 <- function(X) {
         p.value <- pnorm(w1,mean=mu1,sd=sqrt(sigma2),lower.tail=FALSE) 
 
         results <- list(method = "Shapiro-Wilk (1965)",
+                        doi = "https://doi.org/10.2307/2333709",
                         statistic = wast,
                         df = NA,
                         p.value = p.value)

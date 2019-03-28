@@ -1,6 +1,5 @@
 agostino1983 <- function (x, alternative=c("two.sided","less","greater")) {
     ## D'Agostino (1983) test of skewness
-    ## https://doi.org/10.1093/biomet/70.1.227
 
     DNAME <- deparse(substitute(x))
     x <- sort(x[complete.cases(x)])

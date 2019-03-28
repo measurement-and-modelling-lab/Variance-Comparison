@@ -1,6 +1,5 @@
 mardia1970_skewness <- function(X) {
     ## Mardia (1970)
-    ## https://doi.org/10.1093/biomet/57.3.519
 
     X <- as.matrix(X)
     
@@ -20,6 +19,7 @@ mardia1970_skewness <- function(X) {
     p = 1 - pchisq(MST,df)
 
     result <- list(method = "Mardia (1970) skewness test",
+                   doi = "https://doi.org/10.1093/biomet/57.3.519",
                    statistic = MST,
                    df = df,
                    p.value = p)

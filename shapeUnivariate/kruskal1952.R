@@ -1,6 +1,5 @@
 kruskal1952 <- function(x, g, ...) {
     ## Kruskall and Wallis' (1952) test of equality of distribution
-    ## https://doi.org/10.1080/01621459.1952.10483441
     ## https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/kruskal.test.R
 
     if (is.list(x)) {
@@ -58,6 +57,7 @@ kruskal1952 <- function(x, g, ...) {
     names(PARAMETER) <- "df"
 
     result <- list(method = "Kruskal-Wallis (1952) rank-sum test",
+                   doi = "https://doi.org/10.1080/01621459.1952.10483441",
                    statistic = STATISTIC,
                    df = PARAMETER,
                    p.value = PVAL)

@@ -20,6 +20,7 @@ levene1960 <- function (y, group, center=median, ...) {
     p.value <- table$"Pr(>F)"[1]
 
     result <- list(method = "Levene (1960)",
+                   doi = "https://doi.org/10.1137/1003016",
                    statistic = statistic,
                    df = df,
                    p.value = p.value)

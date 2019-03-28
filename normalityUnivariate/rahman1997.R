@@ -1,6 +1,5 @@
 rahman1997 <- function(x){
   ## Rahman, M.M. and Govindarajulu, Z. (1997), A modification of the test of Shapiro and Wilk for normality
-  ## https://doi.org/10.1080/02664769723828
   ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat23.cpp
   ## bilateral test that rejects H0 only for small values of the test statistic
   

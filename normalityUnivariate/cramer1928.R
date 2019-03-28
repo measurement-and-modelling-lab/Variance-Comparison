@@ -1,6 +1,5 @@
 cramer1928 <- function (x) {
     ## Cramer's (1928) test of normality
-    ## https://doi.org/10.1080/03461238.1928.10416862
     ## https://github.com/cran/nortest/blob/master/R/cvm.test.R
 
     x <- sort(x[complete.cases(x)])

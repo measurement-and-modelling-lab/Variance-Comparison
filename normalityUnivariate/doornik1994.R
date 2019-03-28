@@ -1,6 +1,5 @@
 doornik1994 <- function(x) {
     ## Doornik-Hansen (1994) test of normality
-    ## https://doi.org/10.1111/j.1468-0084.2008.00537.x
     ## https://github.com/cran/normwn.test/blob/master/R/normality.test1.R
 
     n <- length(x)

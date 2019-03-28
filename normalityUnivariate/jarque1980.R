@@ -1,6 +1,5 @@
 jarque1980 <- function(x) {
     ## Jarque-Bera (1980) test of univariate normality
-    ## https://doi.org/10.1016/0165-1765(80)90024-5
     ## https://github.com/cran/tsoutliers/blob/master/R/JarqueBera-test.R
 
     n <- length(x)

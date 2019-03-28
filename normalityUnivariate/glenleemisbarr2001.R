@@ -1,6 +1,5 @@
 glenleemisbarr2001 <- function(x){
   ## The Glen-Leemis-Barr normality test
-  ## https://www.doi.org/10.1109/24.963129
   ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat38.cpp
   ## bilateral test that rejects H0 only for large values of the test statistic
   

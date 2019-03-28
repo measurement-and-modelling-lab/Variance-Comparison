@@ -1,6 +1,5 @@
 fligner1976 <- function(x, g, ...) {
     ## Fligner and Killeen's (1976) test of homogeneity of variances
-    ## https://doi.org/10.1080/01621459.1976.10481517
     ## https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/fligner.test.R
 
     ## FIXME: This is the same code as in kruskal.test(), and could also
@@ -47,6 +46,7 @@ fligner1976 <- function(x, g, ...) {
     p.value <- pchisq(statistic, df, lower.tail = FALSE)
 
     result <- list(method = "Fligner and Killeen (1976)",
+                   doi = "https://doi.org/10.1080/01621459.1976.10481517",
                    statistic = statistic,
                    df = df,
                    p.value = p.value)

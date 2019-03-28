@@ -1,6 +1,5 @@
 bartlett1937 <- function(x, g, ...) {
     ## Bartlett's (1937) test of homogeneity of variances
-    ## https://doi.org/10.1098/rspa.1937.0109
     ## https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/bartlett.test.R
 
     LM <- FALSE
@@ -53,6 +52,7 @@ bartlett1937 <- function(x, g, ...) {
     p.value <- pchisq(statistic, df, lower.tail = FALSE)
 
     result <- list(method = "Bartlett (1937)",
+                   doi = "https://doi.org/10.1098/rspa.1937.0109",
                    statistic = statistic,
                    df = df,
                    p.value = p.value)

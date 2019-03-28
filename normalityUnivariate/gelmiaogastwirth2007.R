@@ -1,6 +1,5 @@
 gelmiaogastwirth2007 <- function(x){
   ## Robust directed tests of normality against heavy-tailed alternative
-  ## https://doi.org/10.1016/j.csda.2006.08.022
   ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat33.cpp
   ## bilateral test that rejects H0 only for large values of the test statistic
   

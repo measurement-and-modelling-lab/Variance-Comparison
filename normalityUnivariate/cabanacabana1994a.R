@@ -1,6 +1,5 @@
 cabanacabana1994a <- function(x){
   ## The 1st Cabana-Cabana(1994) test for normality
-  ## https://doi.org/10.1214/aos/1176325636
   ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat19.cpp
   ## bilateral test that rejects H0 only for large values of the test statistic
   

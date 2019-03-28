@@ -2,7 +2,6 @@ wilcoxon1945b <- function(x, y = NULL, alternative = c("two.sided", "less", "gre
                          mu = 0, paired = FALSE, exact = NULL, correct = TRUE,
                          conf.int = FALSE, conf.level = 0.95, ...) {
   ## Wilcoxon's (1945) test of equality of distribution
-  ## https://doi.org/10.230/3001968
   ## https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/wilcox.test.R
   ## Wilcoxon (1945) rank-sum test
   
@@ -196,9 +195,10 @@ wilcoxon1945b <- function(x, y = NULL, alternative = c("two.sided", "less", "gre
   
   names(mu) <- if(paired || !is.null(y)) "location shift" else "location"
     result <- list(method = "Wilcoxon (1945) rank-sum test", ## won't say 'with continuity correction'
-                 statistic = STATISTIC,
-                 df = NA,
-                 p.value = as.numeric(PVAL))
+                   doi = "https://doi.org/10.230/3001968",
+                   statistic = STATISTIC,
+                   df = NA,
+                   p.value = as.numeric(PVAL))
   
   return(result)
 }

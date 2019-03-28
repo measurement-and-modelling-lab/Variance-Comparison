@@ -14,7 +14,8 @@ do
     do
 
 	test=$(cat $i | grep "(method" | grep -o "\".*\"" | tr -d "\"")
-	doi=$(cat $i | grep -o "https://doi.org.*")
+	doi=$(cat $i | grep "doi = " | grep -o "\".*\"" | tr -d "\"")
+	#doi=$(cat $i | grep -o "https://doi.org.*")
 	link=$(cat $i | grep -o "https://github.com.*")
 
 	[ ! -z "$test" ] && echo "  " $test >> census.txt

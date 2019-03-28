@@ -1,6 +1,5 @@
 mardia1970_kurtosis <- function(X) {
   ## Mardia (1970)
-  ## https://doi.org/10.1093/biomet/57.3.519
 
   X <- as.matrix(X)
   
@@ -18,6 +17,7 @@ mardia1970_kurtosis <- function(X) {
   p = 2*(1-pnorm(abs(MKT), 0, 1))
 
   result <- list(method = "Mardia (1970) kurtosis test",
+                 doi = "https://doi.org/10.1093/biomet/57.3.519",
                  statistic = MKT,
                  df = NA,
                  p.value = p)

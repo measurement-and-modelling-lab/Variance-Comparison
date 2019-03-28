@@ -1,6 +1,5 @@
 mardia1970_omnibus_kurtosis <- function(X, grouping) {
     ## Mardia (1970)
-    ## https://doi.org/10.1093/biomet/57.3.519
 
     groups <- split(X, grouping)
     j <- length(groups)
@@ -15,6 +14,7 @@ mardia1970_omnibus_kurtosis <- function(X, grouping) {
     kurtosis.p <- 1 - pchisq(kurtosis.chisq, kurtosis.df)
 
     result <- data.frame(method = "Mardia (1970) omnibus kurtosis test",
+                         doi = "https://doi.org/10.1093/biomet/57.3.519",
                          statistic = kurtosis.chisq,
                          df = kurtosis.df,
                          p.value = kurtosis.p)

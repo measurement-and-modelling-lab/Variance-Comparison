@@ -1,6 +1,5 @@
 lilliefors1967 <- function (x)  {
     ## Lilliefors (1967) modified Kolmogorov-Smirnov
-    ## http://dx.doi.org/10.2307/2283970
     ## https://github.com/cran/nortest/blob/master/R/lillie.test.R
 
     x <- sort(x[complete.cases(x)])

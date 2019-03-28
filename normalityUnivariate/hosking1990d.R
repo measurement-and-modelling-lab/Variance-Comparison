@@ -1,7 +1,7 @@
-## The 4th Hosking test for normality(1990)
-## https://doi.org/10.1111/j.2517-6161.1990.tb01775.x
-## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat13.cpp
 hosking1990d <- function(x){
+  ## The 4th Hosking test for normality(1990)
+  ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat13.cpp
+
   pstarmod3 <- function(r,n,i){
     res <- 0
     for (k in 0:(r-1)) {

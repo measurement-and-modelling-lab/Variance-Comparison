@@ -1,6 +1,5 @@
 mardia1970_omnibus_skewness <- function(X, grouping) {
     ## Mardia (1970)
-    ## https://doi.org/10.1093/biomet/57.3.519
 
     groups <- split(X, grouping)
     j <- length(groups)
@@ -15,6 +14,7 @@ mardia1970_omnibus_skewness <- function(X, grouping) {
     skewness.p <- 1 - pchisq(skewness.chisq, skewness.df)
 
     result <- data.frame(method = "Mardia (1970) omnibus skewness test",
+                         doi = "https://doi.org/10.1093/biomet/57.3.519",
                          statistic = skewness.chisq,
                          df = skewness.df,
                          p.value = skewness.p)

@@ -1,6 +1,5 @@
 zhang1999b <- function(x){
   ## Omnibus test of normality using the Q statistic
-  ## https://doi.org/10.1080/02664769922395
   ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat34.cpp
   
   n <- length(x)

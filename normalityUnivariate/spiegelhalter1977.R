@@ -1,6 +1,5 @@
 spiegelhalter1977 <- function(x){
   ## A test for normality against symmetric alternatives
-  ## https://doi.org/10.1093/biomet/64.2.415
   ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat41.cpp
   ## bilateral test that rejects H0 only for large values of the test statistic
   

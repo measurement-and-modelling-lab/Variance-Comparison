@@ -1,6 +1,5 @@
 eppspulley1983 <- function(x){
   ##A test of normality based on empirical characteristic function  
-  ## https://doi.org/10.1093/biomet/70.3.723
   ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat31.cpp
   
   n <- length(x)

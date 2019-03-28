@@ -1,6 +1,5 @@
 jonckheere1954 <- function(x, g, alternative = "monotonic", ...) {
     ## Jonckheere's (1954) trend test
-    ## https://doi.org/10.2307/2333011
     ## https://github.com/cran/PMCMR/blob/master/R/jonckheere.test.R
     ## I think monotonic is a sensible default for "alternative", but I'm not sure
     
@@ -88,6 +87,7 @@ jonckheere1954 <- function(x, g, alternative = "monotonic", ...) {
     }
 
     result <- list(method = "Jonckheere (1954) trend test",
+                   doi = "https://doi.org/10.2307/2333011",
                    statistic = STATISTIC,
                    df = NA,
                    p.value = PVAL)

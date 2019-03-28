@@ -1,6 +1,5 @@
 pearson1900 <- function (x, n.classes = ceiling(2 * (n^(2/5))), adjust = TRUE) {
     ## Pearson's (1900) chi-square test of normality
-    ## https://doi.org/10.1080/14786440009463897
     ## https://github.com/cran/nortest/blob/master/R/pearson.test.R
 
     x <- x[complete.cases(x)]

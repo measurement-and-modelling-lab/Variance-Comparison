@@ -35,7 +35,6 @@ kurt<-function(x,meth="unbiased"){
 
 doornik2008 <- function(Y,Y.names=NULL){
     ## Doornik-Hansen's (2008) test of multivariate normality
-    ## https://doi.org/10.1111/j.1468-0084.2008.00537.x
     ## https://github.com/selcukorkmaz/MVN/blob/master/R/mvn.R
 
     n<-nrow(Y)
@@ -91,6 +90,7 @@ doornik2008 <- function(Y,Y.names=NULL){
     rownames(univ)<-Y.names
 
     result <- list(method = "Doornik-Hansen (2008)",
+                   doi = "https://doi.org/10.1111/j.1468-0084.2008.00537.x",
                    statistic = multi$TS,
                    df = multi$df,
                    p.value = multi$pval)

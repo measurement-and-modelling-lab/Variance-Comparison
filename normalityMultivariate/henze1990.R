@@ -51,7 +51,6 @@ kurtosis <- function(x, na.rm = FALSE, type = 3) {
 
 henze1990 <- function(data, cov = TRUE, tol = 1e-25){
     ## Henze and Zerkler's (1990) test of multivariate normality
-    ## http://dx.doi.org/10.1080/03610929008830400 
     ## https://github.com/selcukorkmaz/MVN/blob/master/R/mvn.R
 
     dataframe=as.data.frame(data)
@@ -108,6 +107,7 @@ henze1990 <- function(data, cov = TRUE, tol = 1e-25){
     MVN = ifelse(pValue > 0.05, "YES", "NO")
 
     result <- list(method = "Henze-Zirkler (1990)",
+                   doi = "http://dx.doi.org/10.1080/03610929008830400",
                    statistic = HZ,
                    df = NA,
                    p.value = pValue)

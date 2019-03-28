@@ -1,6 +1,5 @@
 filliben1975 <- function(x){
   ## Filliben, J.J. (1975), The Probability Plot Correlation Coefficient Test for Normality
-  ## http://doi.org/10.1080/00401706.1975.10489279
   ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat25.cpp
   ## bilateral test that rejects H0 only for small values of the test statistic
   
