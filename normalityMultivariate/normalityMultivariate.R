@@ -4,6 +4,8 @@ normalityMultivariate <- function(data) {
     source("./normalityMultivariate/henze1990.R")
     source("./normalityMultivariate/mardia1970a.R")
     source("./normalityMultivariate/mardia1970b.R")
+    source("./normalityMultivariate/mardia1970c.R")
+    source("./normalityMultivariate/mardia1970d.R")
     source("./normalityMultivariate/royston1982.R")
     source("./normalityMultivariate/shapiro1965.R")
 
