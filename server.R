@@ -85,7 +85,7 @@ shinyServer(function(input, output, session) {
             dependent <- length(variables) > 1
             if (dependent) {
                 source("./hovDependent/hovDependent.R")
-                table <- hovDependent(values)
+                table <- hovDependent(values, groups)
             } else if (length(input$groups) > 1) {
                 source("./hovIndependent/hovIndependent.R")
                 table <- hovIndependent(values, groups)
