@@ -2,17 +2,19 @@ hovDependent <- function(data, groups)
 {
     ## Test homogeneity of variances on several variables within a single group
 
+    ## Load functions 
+    source("./hovDependent/functions/mvt.control.R")
+    source("./hovDependent/functions/commutation.R")
+    source("./hovDependent/functions/Student.R")
+    source("./hovDependent/functions/studentFit.R")
+    dyn.load("./hovDependent/functions/studentFit", local=FALSE)
+
     ## Load tests
     source("./hovDependent/harris1985a.R")
     source("./hovDependent/harris1985b.R")
     source("./hovDependent/harris1985c.R")
     source("./hovDependent/harris1985d.R")
     source("./hovDependent/sandvik1982.R")
-    source("./hovDependent/functions/mvt.control.R")
-    source("./hovDependent/functions/commutation.R")
-    source("./hovDependent/functions/Student.R")
-    source("./hovDependent/functions/studentFit.R")
-    dyn.load("./hovDependent/functions/studentFit", local=FALSE)
 
     ## Prepare data
     sf <- studentFit(data)
