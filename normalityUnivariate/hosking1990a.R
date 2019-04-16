@@ -1,5 +1,6 @@
 hosking1990a <- function(x) {
     ## The 1st Hosking test for normality(1990)
+    ## https://doi.org/10.1111/j.2517-6161.1990.tb01775.x
     ## https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat10.cpp
 
     x <- sort(x)
