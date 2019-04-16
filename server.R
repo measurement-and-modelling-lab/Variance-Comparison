@@ -127,6 +127,7 @@ shinyServer(function(input, output, session) {
         ## Make test names link to doi
         table$method <- paste0("<a href=", table$doi, ">", table$method, "</a>")
         table$doi <- NULL
+        colnames(table) <- c("Method", "Statistic", "df", "p-value")
 
         source("tablegen.R")
         output <- tableGen(table)
