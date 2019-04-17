@@ -131,6 +131,11 @@ shinyServer(function(input, output, session) {
 
         source("tablegen.R")
         output <- tableGen(table)
+
+        if (input$test == "normality" & univariate & one_group) {
+            output <- paste0(output, "Note: Decision tables for tests without p-values are located <a href=\"critical_values.html\">here</a>")
+        }
+
         HTML(output)
         
     })
