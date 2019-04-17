@@ -9,10 +9,10 @@ sandvik1982 <- function(x){
     stat <- wilcoxon1945a(Z)
 
     result <- data.frame(method = "Sandvik (1982)",
-                   doi = "https://doi.org/10.1093/biomet/69.2.484",
-                   statistic = stat$statistic,
-                   df = NA,
-                   p.value = stat$p.value)
+                         doi = "https://doi.org/10.1093/biomet/69.2.484",
+                         statistic = stat$statistic,
+                         df = NA,
+                         p.value = stat$p.value)
 
     return(result)
 }
