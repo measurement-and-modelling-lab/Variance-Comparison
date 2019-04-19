@@ -82,58 +82,71 @@ shinyServer(function(input, output, session) {
         groups <- data[,groupingVar]
 
         if (input$test == "hov") {
-            dependent <- length(variables) > 1
+
+            source("./hovDependent/hovDependent.R")
+            source("./hovIndependent/hovIndependent.R")
+            
+            dependent <- length(variables) > 1 & length(input$groups) >= 1
+            independent <- length(variables) == 1 & length(input$groups) > 1
+
             if (dependent) {
-                source("./hovDependent/hovDependent.R")
                 table <- hovDependent(values, groups)
-            } else if (length(input$groups) > 1) {
-                source("./hovIndependent/hovIndependent.R")
+            } else if (independent) {
                 table <- hovIndependent(values, groups)
             } else {
                 return()
             }
+
         } else if (input$test == "normality") {
+
+            source("./normalityUnivariate/normalityUnivariate.R")
+            source("./normalityMultivariate/normalityMultivariate.R")
+
             univariate <- length(variables) == 1
             one_group <- length(input$groups) == 1
+
             if (univariate & one_group) {
-                source("./normalityUnivariate/normalityUnivariate.R")
                 table <- normalityUnivariate(values)
             } else if (!univariate & one_group) {
-                source("./normalityMultivariate/normalityMultivariate.R")
                 table <- normalityMultivariate(values)
-            } else {
-                source("./normalityMultivariate/mardia1970c.R")
-                source("./normalityMultivariate/mardia1970d.R")
+            } else if (!univariate & !one_group) {
                 table <- rbind(mardia1970_omnibus_skewness(values, groups),
                                mardia1970_omnibus_kurtosis(values, groups))
+            } else {
+                return()
             }
+
         } else if (input$test == "shape") {
+
+            source("./shapeUnivariate/shapeUnivariate.R")
+            source("./shapeMultivariate/shapeMultivariate.R")
+
             univariate <- length(input$groups) > 1 & length(variables) == 1
             multivariate <- length(input$groups) == 1 & length(variables) > 1
+
             if (univariate) {
-                source("./shapeUnivariate/shapeUnivariate.R")
                 table <- shapeUnivariate(values, groups)
             } else if (multivariate) {
-                source("./shapeMultivariate/shapeMultivariate.R")
                 table <- shapeMultivariate(values)
             } else {
                 return()
             }
-        } else {
-            return()
+
         }
 
-        
         ## Make test names link to doi
         table$method <- paste0("<a href=", table$doi, ">", table$method, "</a>")
         table$doi <- NULL
-        colnames(table) <- c("Method", "Statistic", "df", "p-value")
 
+        ## Generate nice table
+        colnames(table) <- c("Method", "Statistic", "df", "p-value")
         source("tablegen.R")
         output <- tableGen(table)
 
+        ## Link to critical value tables
         if (input$test == "normality" & length(variables) == 1 & length(input$groups) == 1) {
-            output <- paste0(output, "Note: Decision tables for tests without p-values are located <a href=\"critical_values.html\"><font color=\"#00ca8a\">here</font></a>.")
+            output <- paste0(output, "Note: Decision tables for tests without p-values are located
+                                      <a href=\"critical_values.html\"><font color=\"#00ca8a\">here</font></a>.")
         }
 
         HTML(output)
