@@ -26,7 +26,7 @@ hovDependent <- function(data, groups)
                     harris1985c(sf),
                     harris1985d(sf))
 
-    if (length(unique(groups))) {
+    if (length(unique(groups)) == 1 & ncol(data) == 2) {
         output <- rbind(output,
                         sandvik1982(data))
     }
