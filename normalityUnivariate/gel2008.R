@@ -20,7 +20,6 @@ gel2008 <- function(x){
     }
     Jn <- sum(abs(x-M))
     Jn <- sqrt(pi/2) * Jn/n
-    print(m3)
     stat <- n*((m3/(Jn^3))^2)/6+n*((m4/(Jn^4)-3)^2)/64
     PVAL <- 1 - pchisq(stat, 2)
     
