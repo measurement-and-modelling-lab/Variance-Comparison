@@ -11,6 +11,8 @@
    Harris (1985) gradient test
      https://doi.org/10.2307/2336339
      https://github.com/cran/MVT/blob/master/R/homogeneity.test.R
+   Sandvik (1982)
+     https://doi.org/10.1093/biomet/69.2.484
 
 ./hovIndependent
    Bartlett (1937)
@@ -57,6 +59,9 @@
    Anderson-Darling (1954)
      https://doi.org/10.1007/978-3-642-04898-2_118
      https://github.com/cran/nortest/blob/master/R/ad.test.R
+   Barrio et al. (1999)
+     https://doi.org/10.1214/aos/1017938923
+     https://github.com/cran/PoweR/blob/master/inst/statsPureR/statsPureR.R
    Bonett-Seier (2002)
      https://doi.org/10.1016/S0167-9473(02)00074-9
    Bonett-Seier (2002)
@@ -74,12 +79,24 @@
    Cabana-Cabana(1994), #2
      https://doi.org/10.1214/aos/1176325636
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat20.cpp
+   Chen-Shapiro (1995)
+     https://doi.org/10.1080/00949659508811711
+     https://github.com/cran/PoweR/blob/master/inst/statsPureR/statsPureR.R
+   Coin (2008)
+     https://doi.org/10.1016/j.csda.2007.07.012
+     https://github.com/cran/PoweR/blob/master/inst/statsPureR/statsPureR.R
    Cramer-Mises (1928)
      https://doi.org/10.1080/03461238.1928.10416862
      https://github.com/cran/nortest/blob/master/R/cvm.test.R
    Desgagne-Micheaux-Leblanc (2013)
      https://doi.org/10.1080/03610926.2011.577548
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat35.cpp
+   Desgagne-Micheaux's (2018) X<sub>apd</sub>
+     https://doi.org/10.1080/02664763.2017.1415311
+     https://github.com/cran/PoweR/blob/master/inst/statsPureR/statsPureR.R
+   Desgagne-Micheaux's (2018) Z<sub>epd</sub>
+     https://doi.org/10.1080/02664763.2017.1415311
+     https://github.com/cran/PoweR/blob/master/inst/statsPureR/statsPureR.R
    Doornik-Hansen (1994)
      https://doi.org/10.1111/j.1468-0084.2008.00537.x
      https://github.com/cran/normwn.test/blob/master/R/normality.test1.R
@@ -89,15 +106,12 @@
    Filliben (1975)
      http://doi.org/10.1080/00401706.1975.10489279
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat25.cpp
-   Gel-Gastwirth (2008) robust Jarque-Bera
-     https://doi.org/10.1016/j.econlet.2007.05.022
-     https://github.com/cran/lawstat/blob/master/R/rjb.test.R
-   Gel-Gastwirth (2008)
-     https://doi.org/10.1016/j.econlet.2007.05.022
-     https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat9.cpp
    Gel-Miao-Gastwirth (2007)
      https://doi.org/10.1016/j.csda.2006.08.022
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat33.cpp
+   Gel-Gastwirth (2008)
+     https://doi.org/10.1016/j.econlet.2007.05.022
+     https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat9.cpp
    Glen-Leemis-Barr (2001)
      https://www.doi.org/10.1109/24.963129
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat38.cpp
@@ -143,6 +157,12 @@
    Zhang (1999), #2
      https://doi.org/10.1080/02664769922395
      https://github.com/cran/PoweR/blob/master/src/laws-stats/stats/stat34.cpp
+   Zhang-Wu (2005), Z<sub>A</sub>
+     https://doi.org/10.1093/biomet/64.2.415
+     https://github.com/cran/PoweR/blob/master/inst/statsPureR/statsPureR.R
+   Zhang-Wu (2005), Z<sub>C</sub>
+     https://doi.org/10.1093/biomet/64.2.415
+     https://github.com/cran/PoweR/blob/master/inst/statsPureR/statsPureR.R
 
 ./shapeMultivariate
    Kendall (1939) coefficient of concordance
