@@ -4,6 +4,7 @@ shinyServer(function(input, output, session) {
     values <- reactiveValues()
     values$scores <- ""
     values$colnames <- ""
+    ## List of function names and the corressponding index in funcList in normalityUnivariate.R
     univariateNormalityTests <- list("agostino1971" = 1,
                                                            "agostino1973" = 2,
                                                            "anderson1954" = 3,
@@ -101,9 +102,12 @@ shinyServer(function(input, output, session) {
                                        choices = choices)))
     })
     
+    ## Choose univariate normailty tests to run 
     output$chooseUnivariateNormalityTests <- reactive ({
       validate(need(length(input$groups) == 1, ""))
       validate(need(length(input$outcomeVar) == 1 , ""))
+      
+      ##Output ui element
       HTML(paste0(selectInput("selectedTests",
                               label = "Select Tests",
                               choices = names(univariateNormalityTests),
@@ -155,11 +159,14 @@ shinyServer(function(input, output, session) {
             one_group <- length(input$groups) == 1
 
             if (univariate & one_group) {
+                ## Validate on true or false because false is a valid state
                 validate(need(input$selectAllButton == TRUE | input$selectAllButton == FALSE, ""))
+                ## Only needs to check the selected tests when select all isn't selected
                 if(!input$selectAllButton){
                   validate(need(input$selectedTests, ""))
                 }
                 selectionList <- c()
+                ## Generate index list from the selected tests
                 for(name in input$selectedTests){
                   selectionList <- c(selectionList,get(name,univariateNormalityTests))
                 }

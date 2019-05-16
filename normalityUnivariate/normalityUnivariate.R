@@ -90,18 +90,6 @@ normalityUnivariate <- function(data) {
     return(output)
     
 }
-data<- read.csv("data.csv")
-data <- data[,1]
-
-## List of all functions available for univariate normality testing
-
-## test selection list
-selected <- c(1,2,5,7,9)
-
-## Get names from funcMapping list
-for(name in names(funcMapping)){
-  ##print(get(name,funcMapping))
-}
 
 ## Only run and ouput selected functions
 newNormalityUnivariate <- function(data,selectedFunctions,selectAll){
