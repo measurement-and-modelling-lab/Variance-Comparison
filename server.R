@@ -4,6 +4,45 @@ shinyServer(function(input, output, session) {
     values <- reactiveValues()
     values$scores <- ""
     values$colnames <- ""
+    ## List of function names and the corressponding index in funcList in normalityUnivariate.R
+    univariateNormalityTests <- list("agostino1971" = 1,
+                                                           "agostino1973" = 2,
+                                                           "anderson1954" = 3,
+                                                           "barrio1999" = 4,
+                                                           "bonett2002" = 5,
+                                                           "bonettseier2002" = 6,
+                                                           "bontemps2005a" = 7,
+                                                           "bontemps2005b" = 8,
+                                                           "cabana1994a" = 9,
+                                                           "cabana1994b" = 10,
+                                                           "chen1995" = 11,
+                                                           "coin2008" = 12,
+                                                           "cramer1928" = 13,
+                                                           "desgagne2013" = 14, 
+                                                           "desgagne2018a" = 15, 
+                                                           "desgagne2018b" = 16, 
+                                                           "doornik1994" = 17,
+                                                           "epps1983" = 18,
+                                                           "filliben1975" = 19,
+                                                           "gel2007" = 20, 
+                                                           "gel2008" = 21,
+                                                           "glen2001" = 22, 
+                                                           "hosking1990a" = 23,
+                                                           "hosking1990b" = 24,
+                                                           "hosking1990c" = 25,
+                                                           "hosking1990d" = 26,
+                                                           "jarque1980" = 27,
+                                                           "lilliefors1967" = 28,
+                                                           "martinez1981" = 29,
+                                                           "pearson1900" = 30,
+                                                           "rahman1997" = 31,
+                                                           "shapiro1965" = 32,
+                                                           "shapiro1972" = 33,
+                                                           "spiegelhalter1977" = 34,
+                                                           "zhang1999a" = 35,
+                                                           "zhang1999b" = 36,
+                                                           "zhang2005a" = 37,
+                                                           "zhang2005b" = 38)
 
     ## Create a checkbox ui element for choosing a grouping variable
     output$chooseGroupingVar <- reactive ({
@@ -62,7 +101,21 @@ shinyServer(function(input, output, session) {
                                        label = "Variables",
                                        choices = choices)))
     })
-
+    
+    ## Choose univariate normailty tests to run 
+    output$chooseUnivariateNormalityTests <- reactive ({
+      validate(need(length(input$groups) == 1, ""))
+      validate(need(length(input$outcomeVar) == 1 , ""))
+      
+      ##Output ui element
+      HTML(paste0(selectInput("selectedTests",
+                              label = "Select Tests",
+                              choices = names(univariateNormalityTests),
+                              multiple = TRUE),
+                  checkboxInput("selectAllButton",
+                                label = "Run All",
+                                value = FALSE)))
+    })
     ## Run tests and output results
     output$results <- reactive ({
 
@@ -106,7 +159,18 @@ shinyServer(function(input, output, session) {
             one_group <- length(input$groups) == 1
 
             if (univariate & one_group) {
-                table <- normalityUnivariate(values)
+                ## Validate on true or false because false is a valid state
+                validate(need(input$selectAllButton == TRUE | input$selectAllButton == FALSE, ""))
+                ## Only needs to check the selected tests when select all isn't selected
+                if(!input$selectAllButton){
+                  validate(need(input$selectedTests, ""))
+                }
+                selectionList <- c()
+                ## Generate index list from the selected tests
+                for(name in input$selectedTests){
+                  selectionList <- c(selectionList,get(name,univariateNormalityTests))
+                }
+                table <- newNormalityUnivariate(values,selectionList,input$selectAllButton)
             } else if (!univariate & one_group) {
                 table <- normalityMultivariate(values)
             } else if (!univariate & !one_group) {

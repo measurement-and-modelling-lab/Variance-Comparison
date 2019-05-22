@@ -89,7 +89,8 @@ shinyUI(fluidPage(theme = "simplex.css",
     fileInput("file", label = "File input"),
     uiOutput("chooseGroupingVar"),
     uiOutput("chooseGroups"),
-    uiOutput("chooseDV")),
+    uiOutput("chooseDV"),
+    uiOutput("chooseUnivariateNormalityTests")),
   
     mainPanel(
       tabsetPanel(
