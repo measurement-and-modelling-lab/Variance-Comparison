@@ -164,9 +164,9 @@ td { border-top: none;  border-bottom: none; border-right: none; border-left: no
     .body { width:89%; padding-left:5%; padding-bottom: 10px; }
     .title { padding-left:5%; }
     .link { padding-left:5%; }
-    .bottom { display: none; }
+    .bottom { position: relative; float: right; padding-right: 3.5%; }
     .bodytitle { padding-left:5%; padding-top:20px; }
-    .bar2 { padding-top:38px; padding-bottom:38px; }
+    .bar2 { padding-top:28px; padding-bottom:28px; }
     .rwd-break { display: none; }
 
   .topnav.responsive .icon {
