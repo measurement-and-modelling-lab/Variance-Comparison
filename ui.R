@@ -104,7 +104,8 @@ function myFunction() {
     fileInput("file", label = "File input"),
     uiOutput("chooseGroupingVar"),
     uiOutput("chooseGroups"),
-    uiOutput("chooseDV")),
+    uiOutput("chooseDV"),
+    actionButton("runButton", "Run")),
   
     mainPanel(
       tabsetPanel(

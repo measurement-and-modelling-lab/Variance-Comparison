@@ -117,7 +117,7 @@ shinyServer(function(input, output, session) {
                                 value = FALSE)))
     })
     ## Run tests and output results
-    output$results <- reactive ({
+    output$results <- eventReactive(input$runButton, {
 
         ## Check for necessary inputs
         validate(need(input$outcomeVar, ""))
