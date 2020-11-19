@@ -111,8 +111,8 @@ function myFunction() {
       tabsetPanel(
         id = "inTabset",
         tabPanel(value = "output", "Output", uiOutput("results")),
-        tabPanel(value = "readme1", "Statistical Values", includeHTML("./documentation/critical_values.html"))
-        #tabPanel(value = "about", "About", includeHTML("./documentation/about.html"))
+        tabPanel(value = "readme1", "Statistical Values", includeHTML("./documentation/critical_values.html")),
+        tabPanel(value = "about", "About", includeHTML("./documentation/about.html"))
       )
     )
   ),
