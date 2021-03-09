@@ -81,6 +81,14 @@
     font-size: 11px;
 }
 
+.bottom2 {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    color: white;
+    text-align: left;
+    text-decoration: none;
+    font-size: 11px;
+}
+
 a{
 text-decoration: none;
 }
@@ -165,6 +173,7 @@ td { border-top: none;  border-bottom: none; border-right: none; border-left: no
     .title { padding-left:5%; }
     .link { padding-left:5%; }
     .bottom { position: relative; float: right; padding-right: 3.5%; }
+    .bottom2 { position: relative; float: left; padding-left: 3.5%; }
     .bodytitle { padding-left:5%; padding-top:20px; }
     .bar2 { padding-top:28px; padding-bottom:28px; }
     .rwd-break { display: none; }
@@ -185,5 +194,6 @@ td { border-top: none;  border-bottom: none; border-right: none; border-left: no
     .body { width:55%; padding-left:23%; padding-right:22%; padding-bottom: 50px; }
     .bodytitle { padding-left:23%; padding-top:60px; }
     .bottom { position: absolute; right: 3.5%; }
+    .bottom2 { position: absolute; left: 3.5%; }
     .bar2 { padding-top:28px; padding-bottom:28px; }
 }
